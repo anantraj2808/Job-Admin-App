@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:job_admin_app/Presentation/DetailsFormPage/details_form.dart';
 import 'package:job_admin_app/Presentation/PasswordPage/password_page.dart';
 import 'package:job_admin_app/WidgetsAndStyles/transitions.dart';
 import 'package:job_admin_app/constants/colors.dart';
@@ -28,51 +29,6 @@ class _EmailPageState extends State<EmailPage> {
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(top: ht * 0.13),
                   child:
-//              RichText(
-//                text: TextSpan(
-//                  text: "Hi",
-//                  style: TextStyle(color: BLUE,fontSize: 60,fontFamily: 'yanone',height: 1.0,letterSpacing: 2.0),
-//                  children: [
-//                    TextSpan(text: 're people\nfor your\ndaily needs!',style: TextStyle(color: BLACK,fontSize: 60,fontFamily: 'yanone'))
-//                  ]
-//                ),
-//              ),
-
-//                      Row(
-//                    crossAxisAlignment: CrossAxisAlignment.start,
-//                    mainAxisAlignment: MainAxisAlignment.start,
-//                    children: [
-//                      Shimmer.fromColors(
-//                        child: Text(
-//                          'Hi',
-//                          style: TextStyle(
-//                              color: BLUE,
-//                              fontSize: 55,
-//                              fontFamily: 'yanone',
-//                              height: 1.0,
-//                              letterSpacing: 2.0),
-//                        ),
-//                        baseColor: BLUE,
-//                        highlightColor: WHITE,
-//                        loop: 3,
-//                      ),
-//                      Shimmer.fromColors(
-//                        child: Text(
-//                          're people\nfor your\ndaily needs!',
-//                          style: TextStyle(
-//                              color: BLACK,
-//                              fontSize: 55,
-//                              fontFamily: 'yanone',
-//                              height: 1.0,
-//                              letterSpacing: 2.0),
-//                        ),
-//                        baseColor: BLACK,
-//                        highlightColor: WHITE,
-//                        loop: 3,
-//                      )
-//                    ],
-//                  )
-
                 TypewriterAnimatedTextKit(
                   isRepeatingAnimation: true,
                   totalRepeatCount: 2,
@@ -120,7 +76,7 @@ class _EmailPageState extends State<EmailPage> {
               SizedBox(height: ht * 0.115,),
               InkWell(
                 onTap: (){
-                  Navigator.of(context).push(createRoute(PasswordPage()));
+                  Navigator.of(context).push(createRoute(DetailsForm()));
                 },
                 child: Container(
                   height: ht * 0.065,

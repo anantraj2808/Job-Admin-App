@@ -32,28 +32,14 @@ class _PasswordPageState extends State<PasswordPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Looking for',style: TextStyle(
-                          fontSize: 55.0,
-                          fontFamily: 'yanone',
-                          height: 1.0,
-                          letterSpacing: 2.0,
-                          color: BLACK
-                      ),),
                       TypewriterAnimatedTextKit(
                         isRepeatingAnimation: true,
-                        repeatForever: true,
+                        totalRepeatCount: 2,
+                        repeatForever: false,
                         speed: const Duration(milliseconds: 100),
                         pause: const Duration(milliseconds: 1000),
                         text: [
-                          "a Plumber?",
-                          "a Carpenter?",
-                          "an Electrician?",
-                          "a Driver?",
-                          "a Motor Mechanic?",
-                          "a Home-Maid?",
-                          "a Washer-Man?",
-                          "a Sweeper?",
-                          "a Gatekeeper?",
+                          "Glad to have\nyou back here!",
                         ],
                         textStyle: TextStyle(
                             fontSize: 50.0,
@@ -64,13 +50,6 @@ class _PasswordPageState extends State<PasswordPage> {
                         ),
                         textAlign: TextAlign.start,
                       ),
-                      Text('We are here to help!',style: TextStyle(
-                          fontSize: 45.0,
-                          fontFamily: 'yanone',
-                          height: 1.0,
-                          letterSpacing: 2.0,
-                          color: BLACK
-                      ),),
                     ],
                   )
                 ),
