@@ -13,6 +13,10 @@ class EmailPage extends StatefulWidget {
 }
 
 class _EmailPageState extends State<EmailPage> {
+
+  TextEditingController emailTEC = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     var ht = MediaQuery.of(context).size.height;
@@ -52,31 +56,44 @@ class _EmailPageState extends State<EmailPage> {
               SizedBox(height: ht * 0.115,),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: ht * 0.016),
-                  child: TextFormField(
-                    style: TextStyle(color: BLACK),
-                    cursorColor: BLACK,
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: emailTEC,
+                      validator: (value){
+                        return RegExp(
+                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(value)
+                            ? null
+                            : "Please enter valid Email ID";
+                      },
+                      style: TextStyle(color: BLACK),
+                      cursorColor: BLACK,
                 cursorHeight: 20.0,
                 autofocus: false,
                 decoration: InputDecoration(
-                  labelText: "Email",
-                  labelStyle: TextStyle(color: BLACK),
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: BLACK,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: BLACK, width: 1.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: BLACK, width: 1.0),
-                  ),
+                    labelText: "Email",
+                    labelStyle: TextStyle(color: BLACK),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: BLACK,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: BLACK, width: 1.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: BLACK, width: 1.0),
+                    ),
                 ),
-              )),
+              ),
+                  )),
               SizedBox(height: ht * 0.115,),
               InkWell(
                 onTap: (){
-                  Navigator.of(context).push(createRoute(DetailsForm()));
+                  if(_formKey.currentState.validate()){
+                    Navigator.of(context).push(createRoute(DetailsForm()));
+                  }
                 },
                 child: Container(
                   height: ht * 0.065,
