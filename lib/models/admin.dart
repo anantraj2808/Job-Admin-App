@@ -37,5 +37,6 @@ class Admin with ChangeNotifier{
   String get companyName => _companyName;
   String get email => _email;
   String get phoneNumber => _phoneNumber;
+  String get uid => _uid;
 
 }

@@ -5,6 +5,10 @@ import 'package:job_admin_app/WidgetsAndStyles/transitions.dart';
 import 'package:job_admin_app/constants/colors.dart';
 
 class PasswordPage extends StatefulWidget {
+
+  final String email;
+  PasswordPage({this.email});
+
   @override
   _PasswordPageState createState() => _PasswordPageState();
 }
