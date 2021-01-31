@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
+import 'package:job_admin_app/WidgetsAndStyles/transitions.dart';
 import 'package:job_admin_app/constants/colors.dart';
 import 'package:job_admin_app/models/admin.dart';
 import 'package:job_admin_app/services/create_user.dart';
@@ -36,9 +37,7 @@ class _DetailsFormState extends State<DetailsForm> {
     });
     await createUser(context, password).then((value){
       if (value){
-        Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (context) => Home()
-        ));
+        Navigator.of(context).push(createRoute(Home()));
       }
     });
   }
@@ -221,6 +220,7 @@ class _DetailsFormState extends State<DetailsForm> {
                               controller: passwordTEC,
                               validator: (String val){
                                 if (val.toString().trim().length == 0) return "Create a password";
+                                if (val.toString().trim().length <= 5) return "Create a stronger password";
                                 return null;
                               },
                               style: TextStyle(color: BLACK),

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:job_admin_app/constants/apis.dart';
+import 'package:job_admin_app/constants/colors.dart';
 import 'package:job_admin_app/models/admin.dart';
 import 'package:http/http.dart' as http;
 import 'package:job_admin_app/services/shared_preferences.dart';
@@ -42,6 +44,15 @@ Future createUser(BuildContext context, String password) async {
       return true;
   }
 
+  Fluttertoast.showToast(
+      msg: 'Some unknown error occured \:\(',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: BLACK,
+      textColor: WHITE,
+      fontSize: 16.0
+  );
   return false;
 
 }

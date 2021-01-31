@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_admin_app/WidgetsAndStyles/transitions.dart';
 import 'package:job_admin_app/constants/colors.dart';
+import 'package:job_admin_app/services/login.dart';
+
+import '../../home.dart';
 
 class PasswordPage extends StatefulWidget {
 
@@ -15,7 +18,21 @@ class PasswordPage extends StatefulWidget {
 
 class _PasswordPageState extends State<PasswordPage> {
 
+  TextEditingController passwordTEC = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   bool isObscured = true;
+  bool isLoading = false;
+
+  loginRequest(BuildContext context, String email, String password) async {
+    bool isPasswordMatched = false;
+    await login(context, email, password).then((val){
+      print("Is password matched = " + val.toString());
+      isPasswordMatched = val;
+    });
+    if (isPasswordMatched){
+      Navigator.of(context).pushReplacement(createRoute(Home()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,42 +83,52 @@ class _PasswordPageState extends State<PasswordPage> {
                     color: BLACK
                 ),),
                 SizedBox(height: ht * 0.05,),
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: ht * 0.016),
-                    child: TextFormField(
-                      style: TextStyle(color: BLACK),
-                      obscureText: isObscured,
-                      cursorColor: BLACK,
-                      cursorHeight: 20.0,
-                      autofocus: false,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(color: BLACK),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: BLACK,
+                Form(
+                  key: _formKey,
+                  child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: ht * 0.016),
+                      child: TextFormField(
+                        controller: passwordTEC,
+                        style: TextStyle(color: BLACK),
+                        obscureText: isObscured,
+                        cursorColor: BLACK,
+                        cursorHeight: 20.0,
+                        autofocus: false,
+                        validator: (String val){
+                          if (val.length <= 5) return "Enter valid credentials";
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(color: BLACK),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: BLACK,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.remove_red_eye,color: BLACK,),
+                            onPressed: (){
+                              setState(() {
+                                isObscured = !isObscured;
+                              });
+                            },
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: BLACK, width: 1.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: BLACK, width: 1.0),
+                          ),
                         ),
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.remove_red_eye,color: BLACK,),
-                          onPressed: (){
-                            setState(() {
-                              isObscured = !isObscured;
-                            });
-                          },
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                          BorderSide(color: BLACK, width: 1.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BLACK, width: 1.0),
-                        ),
-                      ),
-                    )),
+                      )),
+                ),
                 SizedBox(height: ht * 0.115,),
                 InkWell(
                   onTap: (){
-                    //Navigator.of(context).push(createRoute(PasswordPage()));
+                    if(_formKey.currentState.validate()){
+                      loginRequest(context, widget.email, passwordTEC.text);
+                    }
                   },
                   child: Container(
                     height: ht * 0.065,

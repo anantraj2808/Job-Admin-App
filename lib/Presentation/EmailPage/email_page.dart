@@ -20,7 +20,7 @@ class _EmailPageState extends State<EmailPage> {
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
 
-  Future<bool> checkEmailRequest(String email) async {
+  checkEmailRequest(String email) async {
     setState(() {
       isLoading = true;
     });
@@ -29,9 +29,9 @@ class _EmailPageState extends State<EmailPage> {
       setState(() {
         isLoading = false;
       });
-      if(val) return true;
+      if (val) Navigator.of(context).push(createRoute(PasswordPage(email: emailTEC.text,)));
+      else Navigator.of(context).push(createRoute(DetailsForm(email: emailTEC.text,)));
     });
-    return false;
   }
 
   @override
@@ -115,10 +115,7 @@ class _EmailPageState extends State<EmailPage> {
                       InkWell(
                         onTap: () async {
                           if(_formKey.currentState.validate()){
-                            bool isExistingUser = false;
-                            isExistingUser = await checkEmailRequest(emailTEC.text);
-                            if (isExistingUser) Navigator.of(context).push(createRoute(PasswordPage(email: emailTEC.text,)));
-                            else Navigator.of(context).push(createRoute(DetailsForm(email: emailTEC.text,)));
+                            await checkEmailRequest(emailTEC.text);
                           }
                         },
                         child: Container(
