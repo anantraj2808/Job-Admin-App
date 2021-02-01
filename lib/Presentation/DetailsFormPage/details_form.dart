@@ -37,7 +37,7 @@ class _DetailsFormState extends State<DetailsForm> {
     });
     await createUser(context, password).then((value){
       if (value){
-        Navigator.of(context).push(createRoute(Home()));
+        Navigator.of(context).pushAndRemoveUntil(createRoute(Home()),(route) => false);
       }
     });
   }
