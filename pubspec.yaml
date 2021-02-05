@@ -68,6 +68,9 @@ flutter:
   # list giving the asset and other descriptors for the font. Forflu
   # example:
   fonts:
+    - family: CustomIconFont
+      fonts:
+        - asset: assets/fonts/CustomIconFont.ttf
     - family: baloo
       fonts:
         - asset: assets/fonts/Baloo_2/Baloo2-Regular.ttf

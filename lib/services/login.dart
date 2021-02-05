@@ -48,7 +48,7 @@ Future<bool> login(BuildContext context, String email, String password) async {
   }
 
   Fluttertoast.showToast(
-      msg: 'Some unknown error occured \:\(',
+      msg: 'Some unknown error occurred \:\(',
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,

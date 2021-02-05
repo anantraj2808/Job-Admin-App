@@ -52,4 +52,23 @@ class Job{
         "timing" : jobInstance.workTimings,
         "address" : jobInstance.address,
       };
+
+  Job jobFromJson(Map<String,dynamic> json){
+    return Job(
+      companyName: json['companyName'],
+      city: json['city'],
+      state: json['state'],
+      salary: json['salary'],
+      payBasis: json['payBasis'],
+      profession: json['professionType'],
+      dutyType: json['type'],
+      openings: json['openings'],
+      minimumQualifications: json['minQualification'],
+      language: json['language'],
+      jobDescription: json['jobDescription'],
+      experience: json['minExperience'],
+      workTimings: json['timing'],
+      address: json['address']
+    );
+  }
 }

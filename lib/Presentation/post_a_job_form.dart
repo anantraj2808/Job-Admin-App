@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:job_admin_app/Presentation/HomePage/home_page.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/WidgetsAndStyles/text_styles.dart';
 import 'package:job_admin_app/constants/colors.dart';
@@ -122,7 +123,9 @@ class _PostJobFormState extends State<PostJobForm> {
     await postJob(job, jwt).then((val){
       if (val){
         toast("Job posted successfully", 0);
-        Navigator.pop(context);
+        Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) => HomePage(fromHome: false,)
+        ));
       }
       else toast("Some unknown error occurred", 0);
     });

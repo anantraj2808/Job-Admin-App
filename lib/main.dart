@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
               builder: (context, snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting)
                   return Container(child: Text('Anant',style: TextStyle(color: RED,fontSize: 25.0),),);
-                return (snapshot.hasData && snapshot.data) ? Home(isUserLoggedIn: true,) : EmailPage();
+                return (snapshot.hasData && snapshot.data) ? Home() : EmailPage();
               }
           ),
         );

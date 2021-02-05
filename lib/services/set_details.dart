@@ -8,7 +8,7 @@ import 'package:job_admin_app/models/admin.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-setUserDetails(BuildContext context, String jwt) async {
+Future<bool> setUserDetails(BuildContext context, String jwt) async {
   Admin userProvider = Provider.of<Admin>(context,listen: false);
   String url = BASE_API + SET_DETAILS;
 

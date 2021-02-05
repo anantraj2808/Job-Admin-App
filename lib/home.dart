@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_admin_app/Presentation/HomePage/home_page.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
+import 'package:job_admin_app/services/get_created_jobs.dart';
 import 'package:job_admin_app/services/set_details.dart';
 import 'package:job_admin_app/services/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 import 'models/admin.dart';
+import 'models/job.dart';
 
 class Home extends StatefulWidget {
-
-  final bool isUserLoggedIn;
-  Home({this.isUserLoggedIn});
 
   @override
   _HomeState createState() => _HomeState();
@@ -20,23 +19,19 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   bool isLoading = false;
+  bool isDetailSet = false;
+  List<Job> createdJobList = [];
 
   @override
   void initState() {
-    setState(() {
-      isLoading = true;
-    });
+    //setUserDetailsRequest();
     super.initState();
-    if(widget.isUserLoggedIn) setUserDetailsRequest();
   }
 
   setUserDetailsRequest() async {
     String jwt = await SharedPrefs().getUserJWTSharedPrefs();
     await setUserDetails(context, jwt).then((val){
 
-    });
-    setState(() {
-      isLoading = false;
     });
   }
 
@@ -49,7 +44,7 @@ class _HomeState extends State<Home> {
           if (isLoading) loader(context),
           Opacity(
             opacity: isLoading ? 0.3 : 1.0,
-            child: HomePage(),
+            child: HomePage(fromHome: true,)
           )
         ],
       )
