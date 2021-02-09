@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:job_admin_app/Presentation/HomePage/Widgets/job_list_card.dart';
+import 'package:job_admin_app/Presentation/JobDetailsPage/job_details_page.dart';
+import 'package:job_admin_app/Presentation/JobListingPage/View/job_listing_page.dart';
 import 'package:job_admin_app/Presentation/post_a_job_form.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/WidgetsAndStyles/text_styles.dart';
@@ -28,7 +30,9 @@ class _HomePageState extends State<HomePage> {
 
   bool isSearchEnabled = false;
   bool isSearchInitiated = false;
+  bool isViewAllEnabled = true;
   List<Job> createdJobList = [];
+  List<Job> filteredJobList = [];
   bool isLoading = false;
 
   @override
@@ -39,6 +43,22 @@ class _HomePageState extends State<HomePage> {
   }
 
   filterActiveJobs(){
+    if (createdJobList.length <= 3){
+      setState(() {
+        filteredJobList = createdJobList;
+        isViewAllEnabled = false;
+      });
+      return;
+    }
+
+    for (int i=0 ; i<createdJobList.length ; i++){
+      if (createdJobList[i].isActive == "true"){
+        filteredJobList.add(createdJobList[i]);
+      }
+      if (filteredJobList.length == 3) break;
+    }
+    setState(() {
+    });
 
   }
 
@@ -65,6 +85,7 @@ class _HomePageState extends State<HomePage> {
         print("Created JOb list length = ${createdJobList.length}");
       });
     });
+    filterActiveJobs();
     setState(() {
       isLoading = false;
     });
@@ -143,36 +164,48 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Column(
                   children: [
-                    createdJobList.length != 0 ? Container(
+                    filteredJobList.length != 0 ? Container(
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 8.0),
                       child: RegularTextMed("Jobs you\'ve created \:", 22.0, BLACK, BALOO),
                     ) : Container(),
-                    createdJobList.length != 0 ? Container(
+                    filteredJobList.length != 0 ? Container(
                       height: 180.0,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: createdJobList.length+1,
+                        itemCount: isViewAllEnabled ? filteredJobList.length+1 : filteredJobList.length,
                         itemBuilder: (context,index){
-                          if (index == createdJobList.length){
-                            return Container(
-                              margin: EdgeInsets.only(top: 10.0,bottom: 20.0,left: 12.0,right: 12.0),
-                              width: 200.0,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: BLACK),
-                                  borderRadius: BorderRadius.circular(5.0)
-                              ),
+                          if (index == filteredJobList.length){
+                            return GestureDetector(
+                              onTap: (){
+                                Navigator.of(context).push(createRoute(JobListingPage(createdJobsList: createdJobList,)));
+                              },
                               child: Container(
-                                alignment: Alignment.center,
-                                child: RegularTextMed("VIEW ALL", 20.0, BLACK, BALOO),
+                                margin: EdgeInsets.only(top: 10.0,bottom: 20.0,left: 12.0,right: 12.0),
+                                width: 200.0,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: BLACK),
+                                    borderRadius: BorderRadius.circular(5.0)
+                                ),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: RegularTextMed("VIEW ALL", 20.0, BLACK, BALOO),
+                                ),
                               ),
                             );
                           }
-                          return Container(
-                            margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 10.0,bottom: 20.0),
-                            height: 150.0,
-                            width: 200.0,
-                            child: jobLListCard(createdJobList[index], context, index),
+                          return GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => JobDetailsPage(job: filteredJobList[index],)
+                              ));
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 10.0,bottom: 20.0),
+                              height: 150.0,
+                              width: 200.0,
+                              child: jobLListCard(filteredJobList[index], context, index),
+                            ),
                           );
                         },
                       ),

@@ -1,4 +1,5 @@
 class Job{
+  String id;
   String companyName;
   String email;
   String phoneNumber;
@@ -15,8 +16,10 @@ class Job{
   String experience;
   String workTimings;
   String address;
+  String isActive;
 
   Job({
+      this.id,
       this.companyName,
       this.email,
       this.phoneNumber,
@@ -32,7 +35,8 @@ class Job{
       this.language,
       this.experience,
       this.workTimings,
-      this.address
+      this.address,
+      this.isActive
   });
 
   Map<String, dynamic>  jobToJson(Job jobInstance) =>
@@ -68,7 +72,9 @@ class Job{
       jobDescription: json['jobDescription'],
       experience: json['minExperience'],
       workTimings: json['timing'],
-      address: json['address']
+      address: json['address'],
+      isActive: json['active'],
+      id: json['_id']
     );
   }
 }

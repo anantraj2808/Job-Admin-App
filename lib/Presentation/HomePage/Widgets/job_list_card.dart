@@ -6,10 +6,12 @@ import 'package:job_admin_app/constants/strings.dart';
 import 'package:job_admin_app/models/job.dart';
 
 jobLListCard(Job job, BuildContext context, int index){
+  print("Job ID = "+job.id);
   var ht = MediaQuery.of(context).size.height;
   Color textColor = index%2 == 0 ? WHITE : BLACK;
-  Color shadyColor = index%2 == 0 ? Color(0xff2e2e2e) : Color(0xfff2f2f2);
+  Color shadyColor = index%2 == 0 ? SHADY_BLACK : SHADY_WHITE;
   int professionIndex = PROFESSION_LIST.indexOf(job.profession) - 1;
+  bool isJobActive = job.isActive == "true" ? true : false;
   return Material(
     color: index%2 == 0 ? BLACK : WHITE,
     elevation: 10.0,
@@ -68,10 +70,10 @@ jobLListCard(Job job, BuildContext context, int index){
                     width : 10.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: GREEN
+                      color: isJobActive ? GREEN : RED
                     ),
                   ),
-                  RegularTextReg("  Active", 14.0, textColor, BALOO)
+                  RegularTextReg(isJobActive ? "  Active" : "  Inactive", 14.0, textColor, BALOO)
                 ],
               ),
             )
