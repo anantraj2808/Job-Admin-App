@@ -1,5 +1,7 @@
+import 'package:custom_switch_button/custom_switch_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:job_admin_app/Presentation/HomePage/home_page.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/Widget/applicant_tile.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/WidgetsAndStyles/text_styles.dart';
@@ -8,6 +10,7 @@ import 'package:job_admin_app/constants/strings.dart';
 import 'package:job_admin_app/models/applicant.dart';
 import 'package:job_admin_app/models/job.dart';
 import 'package:job_admin_app/services/get_all_applicants.dart';
+import 'package:job_admin_app/services/toggle_job_status.dart';
 
 class JobDetailsPage extends StatefulWidget {
 
@@ -23,6 +26,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
   Job job;
   String payBasis = "";
   bool isLoading = false;
+  bool jobStatus = true;
   List<Applicant> applicantList = [];
 
   @override
@@ -30,7 +34,20 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
     super.initState();
     job = widget.job;
     payBasis = job.payBasis == "Per Day" ? "day" : "month";
+    jobStatus = job.isActive == "true" ? true : false;
     getApplicantsRequest();
+  }
+
+  toggleJobStatusRequest(bool jobStatus) async {
+    setState(() {
+      isLoading = true;
+    });
+    await toggleJobStatus(job.id, jobStatus).then((value){
+
+    });
+    setState(() {
+      isLoading = false;
+    });
   }
 
   getApplicantsRequest() async {
@@ -71,11 +88,13 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                         IconButton(
                           icon: Icon(Icons.arrow_back_ios,color: BLACK,),
                           onPressed: (){
-                            Navigator.pop(context);
+                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                              builder: (context) => HomePage(fromHome: false,)
+                            ), (route) => false);
                           },
                         ),
                         title: Container(
-                          transform: Matrix4.translationValues(-15, 0, 0),
+                          transform: Matrix4.translationValues(5, 0, 0),
                           margin: EdgeInsets.only(right: 20.0,top: 5.0),
                           alignment: Alignment.center,
                           child: Column(
@@ -89,13 +108,55 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                   children: [
                                     Icon(Icons.location_on_outlined,color: BLACK,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("${job.city}\, ${job.state}", 18.0, BLACK, BALOO),
+                                    Flexible(child: RegularTextRegOverflow("${job.city}\, ${job.state}", 18.0, BLACK, 1, BALOO)),
                                   ],
                                 ),
                               ),
                             ],
                           ),
                         ),
+                        actions: [
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 18,horizontal: 8.0),
+                            child: GestureDetector(
+                              onTap: (){
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: Text("Are you sure want to make this job ${jobStatus ? "Inactive" : "Active"} ?"),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text("Yes"),
+                                          onPressed: () {
+                                            setState(() {
+                                              jobStatus = !jobStatus;
+                                              toggleJobStatusRequest(jobStatus);
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        FlatButton(
+                                          child: Text("No"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: CustomSwitchButton(
+                                backgroundColor: jobStatus ? LIGHT_GREEN : LIGHT_RED,
+                                unCheckedColor: RED,
+                                animationDuration: Duration(milliseconds: 400),
+                                checkedColor: GREEN,
+                                checked: jobStatus,
+                              ),
+                            ),
+                          ),
+                        ],
                         floating: false,
                         expandedHeight: 300.0,
                         pinned: true,
@@ -186,6 +247,28 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                     RegularTextMed("${job.address}", 18.0, BLACK, BALOO),
                                   ],
                                 ),
+//                                SizedBox(height: 15.0,),
+//                                Row(
+//                                  mainAxisAlignment: MainAxisAlignment.center,
+//                                  children: [
+//                                    RegularTextReg("Inactive  ", 16.0, BLACK, BALOO),
+//                                    GestureDetector(
+//                                      onTap: (){
+//                                        setState(() {
+//                                          jobStatus = !jobStatus;
+//                                        });
+//                                      },
+//                                      child: CustomSwitchButton(
+//                                        backgroundColor: jobStatus ? LIGHT_GREEN : LIGHT_RED,
+//                                        unCheckedColor: RED,
+//                                        animationDuration: Duration(milliseconds: 400),
+//                                        checkedColor: GREEN,
+//                                        checked: jobStatus,
+//                                      ),
+//                                    ),
+//                                    RegularTextReg("   Active", 16.0, BLACK, BALOO),
+//                                  ],
+//                                )
                               ],
                             ),
                           ),
@@ -219,11 +302,13 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                         SizedBox(height: 10.0,),
                         Container(
                           child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: applicantList.length,
                             itemBuilder: (context,index){
                               return GestureDetector(
                                 child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 5.0),
                                   height: 100.0,
                                   child: applicantListTile(context, index, applicantList[index]),
                                 ),

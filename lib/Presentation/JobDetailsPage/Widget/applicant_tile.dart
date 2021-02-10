@@ -8,6 +8,7 @@ import 'package:job_admin_app/constants/colors.dart';
 applicantListTile(BuildContext context, int index, Applicant applicant){
   var ht = MediaQuery.of(context).size.height;
   var wd = MediaQuery.of(context).size.width;
+  //index = 0;
   Color textColor = index%2 == 0 ? WHITE : BLACK;
   Color boxColor = index%2 == 0 ? BLACK : WHITE;
   return Material(
@@ -84,7 +85,7 @@ applicantListTile(BuildContext context, int index, Applicant applicant){
         ),
         trailing: Container(
           margin: EdgeInsets.only(top: 25.0),
-          child: Icon(Icons.arrow_forward_ios,color: WHITE,size: 16.0,)
+          child: Icon(Icons.arrow_forward_ios,color: textColor,size: 16.0,)
         ),
       )
     ),
