@@ -57,9 +57,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
     await getAllApplicants(job.id).then((val){
       setState(() {
         applicantList = val;
-        for (int i=0 ; i<applicantList[0].occupations.length ; i++){
-          print("Applicant Profession = "+applicantList[0].occupations[i].occupation);
-        }
+
       });
     });
     setState(() {

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:job_admin_app/Presentation/HomePage/Widgets/job_list_card.dart';
+import 'package:job_admin_app/Presentation/JobDetailsPage/Widget/applicant_tile.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/job_details_page.dart';
 import 'package:job_admin_app/Presentation/JobListingPage/View/job_listing_page.dart';
 import 'package:job_admin_app/Presentation/post_a_job_form.dart';
@@ -11,8 +13,10 @@ import 'package:job_admin_app/WidgetsAndStyles/transitions.dart';
 import 'package:job_admin_app/constants/colors.dart';
 import 'package:job_admin_app/constants/strings.dart';
 import 'package:job_admin_app/models/admin.dart';
+import 'package:job_admin_app/models/applicant.dart';
 import 'package:job_admin_app/models/job.dart';
 import 'package:job_admin_app/services/get_created_jobs.dart';
+import 'package:job_admin_app/services/search_workers.dart';
 import 'package:job_admin_app/services/set_details.dart';
 import 'package:job_admin_app/services/shared_preferences.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +37,12 @@ class _HomePageState extends State<HomePage> {
   bool isViewAllEnabled = true;
   List<Job> createdJobList = [];
   List<Job> filteredJobList = [];
+  List<Applicant> workersList = [];
   bool isLoading = false;
+  String _selectedState = statesList[0];
+  List<String> citiesList = [];
+  String _selectedCity = "Select a city";
+  String _selectedProfession = "Select a Profession";
 
   @override
   void initState() {
@@ -91,6 +100,35 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  initiateSearch() async {
+    if (_selectedState == "Select a state" && _selectedCity == "Select a city" && _selectedProfession == "Select a Profession") toast("Please select location and/or profession");
+    if (_selectedState != "Select a state" && _selectedCity == "Select a city") toast("Please select a city");
+    else{
+      setState(() {
+        isLoading = true;
+      });
+      await searchWorkers(_selectedProfession, _selectedCity, _selectedState).then((val){
+        setState(() {
+          print("Length = " + val.length.toString());
+          workersList = val;
+          isLoading = false;
+        });
+      });
+    }
+  }
+
+  toast(String msg){
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: BLACK,
+        textColor: WHITE,
+        fontSize: 16.0
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var ht = MediaQuery.of(context).size.height;
@@ -115,40 +153,121 @@ class _HomePageState extends State<HomePage> {
             ))
         ],
           bottom: isSearchEnabled ?  PreferredSize(
-            preferredSize: Size.fromHeight(ht*0.091),
-            child: Row(
+            preferredSize: Size.fromHeight(140),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 12.0,bottom: 15.0),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(24.0)
-                    ),
-                    child: TextFormField(
-                      onChanged: (String text){
-                      },
-                      //controller: _searchController,
-                      textCapitalization: TextCapitalization.words,
-                      decoration: InputDecoration(
-                          hintText: "Search for a person",
-                          contentPadding: const EdgeInsets.only(left: 24.0),
-                          border: InputBorder.none
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          margin: const EdgeInsets.only(left: 12.0,bottom: 15.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(24.0)
+                          ),
+                          child:DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              value: _selectedState,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedState = newValue;
+                                  _selectedCity = "Select a city";
+                                  if(_selectedState == statesList[1]) citiesList = gujaratCities;
+                                  if(_selectedState == statesList[2]) citiesList = maharashtraCities;
+                                  if(_selectedState == statesList[3]) citiesList = mpCities;
+                                  if(_selectedState == statesList[4]) citiesList = punjabCities;
+                                  if(_selectedState == statesList[5]) citiesList = rajasthanCities;
+                                  if(_selectedState == statesList[6]) citiesList = upCities;
+                                  _selectedCity = citiesList[0];
+                                });
+                              },
+                              items: statesList.map((location) {
+                                return DropdownMenuItem(
+                                  child: Text(location),
+                                  value: location,
+                                );
+                              }).toList(),
+                            ),
+                          )
                       ),
                     ),
-                  ),
+                    Expanded(
+                      child: Container(
+                          margin: const EdgeInsets.only(left: 12.0,bottom: 15.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(24.0)
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              hint: Text('Select a city'),
+                              value: _selectedCity,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedCity = newValue;
+                                });
+                              },
+                              items: citiesList.map((city) {
+                                return DropdownMenuItem(
+                                  child: new Text(city),
+                                  value: city,
+                                );
+                              }).toList(),
+                            ),
+                          )
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  alignment: Alignment.topCenter,
-                  margin: EdgeInsets.only(bottom: 10.0),
-                  child: IconButton(
-                    icon: Icon(Icons.search,color: Colors.white,),
-                    onPressed: (){
-                      setState(() {
-                        isSearchInitiated = true;
-                      });
-                    },
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          margin: const EdgeInsets.only(left: 12.0,bottom: 15.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(24.0)
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              hint: Text('Select a Profession'),
+                              value: _selectedProfession,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedProfession = newValue;
+                                });
+                              },
+                              items: PROFESSION_LIST.map((city) {
+                                return DropdownMenuItem(
+                                  child: new Text(city),
+                                  value: city,
+                                );
+                              }).toList(),
+                            ),
+                          )
+                      ),
+                    ),
+                    Container(
+                      width: 80.0,
+                      padding: EdgeInsets.only(bottom: 10.0),
+                      child: IconButton(
+                        icon: Icon(Icons.search,color: Colors.white,),
+                        onPressed: (){
+                          setState(() {
+                            isSearchInitiated = true;
+                          });
+                          initiateSearch();
+                        },
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
@@ -216,7 +335,34 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
-      ) : Container(height: 100.0,width: 100.0,color: RED,),
+      ) :
+      Stack(
+        children: [
+          if (isLoading) loader(context),
+          Opacity(
+            opacity: isLoading ? 0.3 : 1.0,
+            child: SafeArea(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10.0),
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: workersList.length,
+                  itemBuilder: (context,index){
+                    return GestureDetector(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 5.0),
+                        height: 100.0,
+                        child: applicantListTile(context, index, workersList[index]),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: GestureDetector(
         onTap: (){
