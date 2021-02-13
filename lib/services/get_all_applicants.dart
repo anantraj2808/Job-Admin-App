@@ -5,13 +5,23 @@ import 'package:job_admin_app/constants/apis.dart';
 import 'package:http/http.dart' as http;
 import 'package:job_admin_app/constants/colors.dart';
 import 'package:job_admin_app/models/applicant.dart';
+import 'package:job_admin_app/services/shared_preferences.dart';
 
 Future<List<Applicant>> getAllApplicants(String jobId) async {
 
   List<Applicant> applicantList = [];
 
   String url = BASE_API + GET_APPLICANTS + jobId;
-  final http.Response response = await http.get(url);
+  String jwt = await SharedPrefs().getUserJWTSharedPrefs();
+
+  final http.Response response = await http.get(
+      url,
+      headers: <String,String>{
+        "auth-token" : jwt
+      }
+  );
+
+
   print("Get all applicants response code = ${response.statusCode}");
 
   var responseBody = jsonDecode(response.body);

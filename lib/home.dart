@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
               title: Text("Profile", style: TextStyle(
                   color: _selectedIndex == 1 ? BLACK : GREY
               ),),
-              icon: Icon(Icons.search,color: _selectedIndex == 1 ? BLACK : GREY)),
+              icon: Icon(Icons.person,color: _selectedIndex == 1 ? BLACK : GREY)),
           ],
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,

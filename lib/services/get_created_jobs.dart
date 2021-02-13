@@ -7,15 +7,22 @@ import 'package:job_admin_app/models/job.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:job_admin_app/services/shared_preferences.dart';
 
 Future<List<Job>> getCreatedJobs(BuildContext context) async {
   Admin userProvider = Provider.of<Admin>(context,listen: false);
+  String jwt = await SharedPrefs().getUserJWTSharedPrefs();
 
   String url = BASE_API + GET_CREATED_JOBS + userProvider.uid;
   print("URL = $url");
   List<Job> temp = [];
 
-  http.Response response = await http.get(url);
+  http.Response response = await http.get(
+    url,
+    headers: <String,String>{
+      "auth-token" : jwt
+    }
+  );
 
   print("Get created Jobs response code = " + response.statusCode.toString());
   var responseBody = jsonDecode(response.body);
