@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_admin_app/Presentation/HomePage/home_page.dart';
+import 'package:job_admin_app/Presentation/ProfilePage/profile_page.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/services/get_created_jobs.dart';
 import 'package:job_admin_app/services/set_details.dart';
@@ -22,7 +23,7 @@ class _HomeState extends State<Home> {
 
   List<Widget> _screens = [
     HomePage(fromHome: true,),
-    Container()
+    ProfilePage()
   ];
   PageController _pageController = PageController();
 
