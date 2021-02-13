@@ -40,5 +40,5 @@ Future<bool> changePassword(String oldPassword, String newPassword) async {
       textColor: WHITE,
       fontSize: 16.0
   );
-  else return false;
+  return false;
 }
