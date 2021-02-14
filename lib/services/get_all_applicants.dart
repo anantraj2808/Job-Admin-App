@@ -13,6 +13,7 @@ Future<List<Applicant>> getAllApplicants(String jobId) async {
 
   String url = BASE_API + GET_APPLICANTS + jobId;
   String jwt = await SharedPrefs().getUserJWTSharedPrefs();
+  print("JWT = $jwt");
 
   final http.Response response = await http.get(
       url,

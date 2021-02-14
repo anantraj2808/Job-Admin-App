@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:job_admin_app/Presentation/ApplicantDetailsPage/applicant_details_page.dart';
 import 'package:job_admin_app/Presentation/HomePage/Widgets/job_list_card.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/Widget/applicant_tile.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/job_details_page.dart';
@@ -350,6 +351,11 @@ class _HomePageState extends State<HomePage> {
                   itemCount: workersList.length,
                   itemBuilder: (context,index){
                     return GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => ApplicantDetailsPage(applicant: workersList[index],isApplicant: false,)
+                        ));
+                      },
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 5.0),
                         height: 100.0,

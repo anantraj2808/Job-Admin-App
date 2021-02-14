@@ -1,6 +1,7 @@
 import 'package:custom_switch_button/custom_switch_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:job_admin_app/Presentation/ApplicantDetailsPage/applicant_details_page.dart';
 import 'package:job_admin_app/Presentation/HomePage/home_page.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/Widget/applicant_tile.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
@@ -11,6 +12,8 @@ import 'package:job_admin_app/models/applicant.dart';
 import 'package:job_admin_app/models/job.dart';
 import 'package:job_admin_app/services/get_all_applicants.dart';
 import 'package:job_admin_app/services/toggle_job_status.dart';
+
+import '../../home.dart';
 
 class JobDetailsPage extends StatefulWidget {
 
@@ -87,7 +90,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                           icon: Icon(Icons.arrow_back_ios,color: BLACK,),
                           onPressed: (){
                             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                              builder: (context) => HomePage(fromHome: false,)
+                              builder: (context) => Home()
                             ), (route) => false);
                           },
                         ),
@@ -125,18 +128,18 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                       content: Text("Are you sure want to make this job ${jobStatus ? "Inactive" : "Active"} ?"),
                                       actions: <Widget>[
                                         FlatButton(
+                                          child: Text("No"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        FlatButton(
                                           child: Text("Yes"),
                                           onPressed: () {
                                             setState(() {
                                               jobStatus = !jobStatus;
                                               toggleJobStatusRequest(jobStatus);
                                             });
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                        FlatButton(
-                                          child: Text("No"),
-                                          onPressed: () {
                                             Navigator.of(context).pop();
                                           },
                                         ),
@@ -156,7 +159,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                           ),
                         ],
                         floating: false,
-                        expandedHeight: 300.0,
+                        expandedHeight: 310.0,
                         pinned: true,
                         flexibleSpace: Container(
                           decoration: BoxDecoration(
@@ -176,23 +179,22 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                   children: [
                                     Icon(Icons.monetization_on_outlined,color: BLACK,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("₹ ${job.salary} /${job.payBasis == "Per Day" ? " day" : " month"}", 18.0, BLACK, BALOO),
+                                    RegularTextReg("₹ ${job.salary} /${job.payBasis == "Per Day" ? " day" : " month"}", 22.0, BLACK, BALOO),
                                     Spacer(),
                                     Icon(Icons.timer,color: BLACK,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("${job.dutyType}", 18.0, BLACK, BALOO),
+                                    RegularTextReg("${job.dutyType}", 22.0, BLACK, BALOO),
                                   ],
                                 ),
-                                SizedBox(height: 5.0,),
                                 Row(
                                   children: [
                                     Icon(Icons.format_list_numbered,color: BLACK,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("${job.openings} Openings", 18.0, BLACK, BALOO),
+                                    RegularTextReg("${job.openings} Openings", 22.0, BLACK, BALOO),
                                     Spacer(),
                                     Icon(Icons.language_outlined,color: BLACK,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("${job.language}", 18.0, BLACK, BALOO),
+                                    RegularTextReg("${job.language}", 22.0, BLACK, BALOO),
                                   ],
                                 ),
                                 SizedBox(height: 5.0,),
@@ -305,6 +307,11 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                             itemCount: applicantList.length,
                             itemBuilder: (context,index){
                               return GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => ApplicantDetailsPage(applicant: applicantList[index], isApplicant: true,)
+                                  ));
+                                },
                                 child: Container(
                                   margin: EdgeInsets.symmetric(vertical: 5.0),
                                   height: 100.0,

@@ -11,9 +11,10 @@ class Applicant{
   String name;
   String language;
   String salaryRange;
+  String applicationId;
 
   Applicant({this.id, this.phoneNumber, this.city, this.state, this.occupations,
-      this.age, this.gender, this.name, this.language, this.salaryRange});
+      this.age, this.gender, this.name, this.language, this.salaryRange,this.applicationId});
 
   Applicant applicantFromJson(Map<String,dynamic> json){
     return Applicant(
@@ -26,6 +27,7 @@ class Applicant{
       name: json['name'],
       language: json['language'],
       salaryRange: json['salaryRange'],
+      applicationId: json['applicationId'],
       occupations: getOccupationsList(json['occupations'])
     );
   }
