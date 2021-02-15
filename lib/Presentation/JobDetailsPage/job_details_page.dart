@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:job_admin_app/Presentation/ApplicantDetailsPage/applicant_details_page.dart';
 import 'package:job_admin_app/Presentation/HomePage/home_page.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/Widget/applicant_tile.dart';
+import 'package:job_admin_app/Presentation/JobDetailsPage/selected_profile_page.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/WidgetsAndStyles/text_styles.dart';
 import 'package:job_admin_app/constants/colors.dart';
@@ -31,6 +32,8 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
   bool isLoading = false;
   bool jobStatus = true;
   List<Applicant> applicantList = [];
+  List<Applicant> acceptedList = [];
+  List<Applicant> inReviewList = [];
 
   @override
   void initState() {
@@ -58,10 +61,11 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
       isLoading = true;
     });
     await getAllApplicants(job.id).then((val){
-      setState(() {
-        applicantList = val;
-
-      });
+      for (int i=0 ; i<val.length ; i++){
+        if(val[i].appointmentStatus == "applied") applicantList.add(val[i]);
+        if(val[i].appointmentStatus == "Accepted") acceptedList.add(val[i]);
+        if(val[i].appointmentStatus == "In-Review") inReviewList.add(val[i]);
+      }
     });
     setState(() {
       isLoading = false;
@@ -293,10 +297,18 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                             Container(
                                 padding: EdgeInsets.symmetric(vertical: 7.0),
                                 alignment: Alignment.centerLeft,
-                                child: RegularTextMed("Applicants", 24.0, BLACK, BALOO)
+                                child: RegularTextMed("New Applicants", 24.0, BLACK, BALOO)
                             ),
                             SizedBox(width: 10.0,),
-                            RegularTextReg("\( ${applicantList.length} \)", 22.0, BLACK, BALOO)
+                            RegularTextReg("\( ${applicantList.length} \)", 22.0, BLACK, BALOO),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => SelectedProfilesPage(acceptedList: acceptedList,inReviewList: inReviewList,)
+                                ));
+                              },
+                              child: RegularTextReg("VIEW ALL", 18.0, BLUE, BALOO))
                           ],
                         ),
                         SizedBox(height: 10.0,),

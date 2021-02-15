@@ -80,9 +80,6 @@ class _HomePageState extends State<HomePage> {
     await setUserDetails(context, jwt).then((val){
       if(val) getCreatedJobsRequest(context);
     });
-    setState(() {
-      isLoading = false;
-    });
   }
 
   getCreatedJobsRequest(BuildContext context) async {

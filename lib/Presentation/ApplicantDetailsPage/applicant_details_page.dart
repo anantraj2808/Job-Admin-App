@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/WidgetsAndStyles/text_styles.dart';
@@ -66,11 +67,31 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
             textColor: WHITE,
             fontSize: 16.0
         );
+        if(widget.isApplicant) {
+          Navigator.pop(context);
+        }
       }
     });
     setState(() {
       isLoading = false;
     });
+  }
+
+  getApplicationStatus(String text){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          height : 10.0,
+          width : 10.0,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: text == "Accepted" ? GREEN : YELLOW
+          ),
+        ),
+        RegularTextMed("    $text", 24.0, BLACK, BALOO)
+      ],
+    );
   }
 
   @override
@@ -113,6 +134,21 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                           ],
                         ),
                         SizedBox(height: 10.0,),
+                        widget.isApplicant && widget.applicant.appointmentStatus != "applied" ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height : 10.0,
+                              width : 10.0,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: widget.applicant.appointmentStatus == "Accepted" ? GREEN : YELLOW
+                              ),
+                            ),
+                            RegularTextMed("    ${widget.applicant.appointmentStatus}", 20.0, BLACK, BALOO)
+                          ],
+                        ) : Container(),
+                        widget.isApplicant && widget.applicant.appointmentStatus != "applied" ? SizedBox(height: 20.0,) : Container(),
                         Wrap(
                           runSpacing: 2.0,
                           spacing: 5.0,
@@ -191,7 +227,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                           ],
                         ),
                         SizedBox(height: 30.0,),
-                        GestureDetector(
+                        widget.isApplicant && (widget.applicant.appointmentStatus == "applied" || widget.applicant.appointmentStatus == "In-Review") ? GestureDetector(
                           onTap: (){
                             showDialog(
                               context: context,
@@ -234,9 +270,9 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 15.0,),
-                        GestureDetector(
+                        ) : Container(),
+                        widget.isApplicant && (widget.applicant.appointmentStatus == "applied" || widget.applicant.appointmentStatus == "In-Review") ? SizedBox(height: 15.0,) : Container(),
+                        widget.isApplicant && widget.applicant.appointmentStatus == "applied" ? GestureDetector(
                           onTap: (){
                             showDialog(
                               context: context,
@@ -279,9 +315,9 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 15.0,),
-                        GestureDetector(
+                        ) : Container(),
+                        widget.isApplicant && widget.applicant.appointmentStatus == "applied" ? SizedBox(height: 15.0,) : Container(),
+                        widget.isApplicant && (widget.applicant.appointmentStatus == "applied" || widget.applicant.appointmentStatus == "In-Review") ? GestureDetector(
                           onTap: (){
                             showDialog(
                               context: context,
@@ -324,7 +360,22 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                               ),
                             ),
                           ),
-                        ),
+                        ) : Container(),
+//                        SizedBox(height: 50.0),
+//                        widget.isApplicant && widget.applicant.appointmentStatus != "applied" ? Row(
+//                          mainAxisAlignment: MainAxisAlignment.center,
+//                          children: [
+//                            Container(
+//                              height : 20.0,
+//                              width : 20.0,
+//                              decoration: BoxDecoration(
+//                                  shape: BoxShape.circle,
+//                                  color: widget.applicant.appointmentStatus == "Accepted" ? GREEN : YELLOW
+//                              ),
+//                            ),
+//                            RegularTextMed("    ${widget.applicant.appointmentStatus}", 24.0, BLACK, BALOO)
+//                          ],
+//                        ) : Container()
                       ],
                     ),
                   ),
