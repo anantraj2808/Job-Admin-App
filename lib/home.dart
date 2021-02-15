@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
 
   List<Widget> _screens = [
     HomePage(fromHome: true,),
-    ProfilePage()
+    ProfilePage(),
   ];
   PageController _pageController = PageController();
 

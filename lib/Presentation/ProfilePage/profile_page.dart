@@ -7,6 +7,8 @@ import 'package:job_admin_app/constants/colors.dart';
 import 'package:job_admin_app/constants/strings.dart';
 import 'package:job_admin_app/models/admin.dart';
 import 'package:job_admin_app/services/change_password.dart';
+import 'package:job_admin_app/services/edit_profile.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -14,10 +16,31 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
   TextEditingController passwordTEC = TextEditingController();
   TextEditingController oldPasswordTEC = TextEditingController();
   TextEditingController confirmPasswordTEC = TextEditingController();
+  TextEditingController companyNameTEC = TextEditingController();
+  TextEditingController nameTEC = TextEditingController();
+  TextEditingController emailTEC = TextEditingController();
+  TextEditingController phoneTEC = TextEditingController();
   bool isLoading = false;
+  bool isEdited = false;
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    setText();
+  }
+
+  setText(){
+    Admin userProvider = Provider.of<Admin>(context,listen: false);
+    companyNameTEC.text = userProvider.companyName;
+    nameTEC.text = userProvider.name;
+    emailTEC.text = userProvider.email;
+    phoneTEC.text = userProvider.phoneNumber;
+  }
 
   changePasswordRequest() async {
     setState(() {
@@ -230,27 +253,210 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  editProfileRequest() async {
+    Admin user = Provider.of<Admin>(context,listen: false);
+    user.setCompanyName(companyNameTEC.text);
+    user.setName(nameTEC.text);
+    user.setEmail(emailTEC.text);
+    user.setPhoneNumber(phoneTEC.text);
+    setState(() {
+      isLoading = true;
+    });
+    await editProfile(context).then((val){
+      if (val){
+        Fluttertoast.showToast(
+            msg: 'Profile Edited Successfully',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: BLACK,
+            textColor: WHITE,
+            fontSize: 16.0
+        );
+      }
+    });
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var ht = MediaQuery.of(context).size.height;
+    var wd = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: WHITE,
+      appBar: AppBar(
+        backgroundColor: WHITE,
+        elevation: 0,
+        actions: [
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            height: 24.0,
+            width: 24.0,
+            child: Image.asset('assets/images/password_change.png'),
+          )
+        ],
+      ),
       body: Stack(
         children: [
           if(isLoading) loader(context),
           Opacity(
             opacity: isLoading ? 0.3 : 1.0,
             child: SafeArea(
-              child: Center(
-                child: FlatButton(
-                  color: Colors.orange,
-                  child: Text("Change Password"),
-                  onPressed: () {
-                    showPasswordChangeDialog(context);
-                  },
+              child: Container(
+                width: wd,
+                padding: EdgeInsets.only(top: 20.0,left: 15.0,right: 15.0),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          height: 100.0,
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                            color: BLACK_26,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: Icon(Icons.perm_identity,color: BLACK,size: 50.0,),
+                          ),
+                        ),
+                        SizedBox(height: 50.0,),
+                        TextFormField(
+                          enabled: isEdited,
+                          controller: companyNameTEC,
+                          validator: (String val){
+                            if (val.toString().trim().length == 0) return "Enter valid Organisation Name";
+                            return null;
+                          },
+                          style: TextStyle(color: BLACK),
+                          cursorColor: BLACK,
+                          cursorHeight: 20.0,
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: "Organisation Name",
+                            labelStyle: TextStyle(color: BLACK),
+                            prefixIcon: Icon(
+                              Icons.people,
+                              color: BLACK,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: BLACK, width: 1.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15.0,),
+                        TextFormField(
+                          enabled: isEdited,
+                          controller: nameTEC,
+                          validator: (String val){
+                            if (val.toString().trim().length == 0) return "Enter valid Name";
+                            return null;
+                          },
+                          style: TextStyle(color: BLACK),
+                          cursorColor: BLACK,
+                          cursorHeight: 20.0,
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: "Name",
+                            labelStyle: TextStyle(color: BLACK),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: BLACK,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: BLACK, width: 1.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15.0,),
+                        TextFormField(
+                          controller: emailTEC,
+                          validator: (String val){
+                            if (val.toString().trim().length == 0) return "Enter valid email";
+                            return null;
+                          },
+                          style: TextStyle(color: BLACK),
+                          enabled: false,
+                          cursorHeight: 20.0,
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: "Email (Non-Editable)",
+                            labelStyle: TextStyle(color: DARK_GREY),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: BLACK,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: BLACK, width: 1.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: DARK_GREY, width: 1.0),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15.0,),
+                        TextFormField(
+                          enabled: isEdited,
+                          controller: phoneTEC,
+                          validator: (String val){
+                            if (val.toString().trim().length != 0) return "Enter valid Phone Number";
+                            return null;
+                          },
+                          style: TextStyle(color: BLACK),
+                          cursorColor: BLACK,
+                          cursorHeight: 20.0,
+                          autofocus: false,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            labelText: "Phone Number",
+                            labelStyle: TextStyle(color: BLACK),
+                            prefixIcon: Icon(
+                              Icons.phone_android_outlined,
+                              color: BLACK,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: BLACK, width: 1.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              )
             ),
           )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          setState(() {
+            isEdited = !isEdited;
+            if(!isEdited){
+              editProfileRequest();
+            }
+          });
+        },
+        backgroundColor: BLACK,
+        child: Icon(isEdited ? Icons.check : Icons.edit),
       ),
     );
   }
