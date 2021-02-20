@@ -32,7 +32,7 @@ Future<bool> changePassword(String oldPassword, String newPassword) async {
 
 
   Fluttertoast.showToast(
-      msg: 'Some unknown error occurred \:\(',
+      msg: 'Some unknown error occurred\:\(, Retry',
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,

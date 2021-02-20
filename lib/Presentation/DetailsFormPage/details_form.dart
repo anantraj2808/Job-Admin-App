@@ -71,6 +71,7 @@ class _DetailsFormState extends State<DetailsForm> {
                     color: BLACK,
                     child: RegularTextMed("Okay", 18.0, WHITE, BALOO),
                     onPressed: (){
+                      Navigator.pop(context);
                       requestUserCreate(userProvider);
                     },
                   )

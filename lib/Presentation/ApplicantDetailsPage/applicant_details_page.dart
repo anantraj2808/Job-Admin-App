@@ -2,18 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:job_admin_app/Presentation/JobDetailsPage/job_details_page.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/WidgetsAndStyles/text_styles.dart';
 import 'package:job_admin_app/constants/colors.dart';
 import 'package:job_admin_app/constants/strings.dart';
 import 'package:job_admin_app/models/applicant.dart';
+import 'package:job_admin_app/models/job.dart';
 import 'package:job_admin_app/services/toggle_application_status.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ApplicantDetailsPage extends StatefulWidget {
   final Applicant applicant;
   final bool isApplicant;
-  ApplicantDetailsPage({this.applicant,this.isApplicant});
+  final Job job;
+  ApplicantDetailsPage({this.applicant,this.isApplicant,this.job});
   @override
   _ApplicantDetailsPageState createState() => _ApplicantDetailsPageState();
 }
@@ -106,7 +109,14 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios,color: BLACK,),
           onPressed: (){
-            Navigator.pop(context);
+            if(widget.isApplicant){
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (context) => JobDetailsPage(job: widget.job,)
+              ));
+            }
+            else {
+              Navigator.pop(context);
+            }
           },
         ),
       ),
@@ -247,7 +257,9 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                                         setState(() {
                                           toggleApplicationStatusRequest('Accepted');
                                         });
-                                        Navigator.of(context).pop();
+                                        Navigator.pushReplacement(context, MaterialPageRoute(
+                                          builder: (context) => JobDetailsPage(job: widget.job,)
+                                        ));
                                       },
                                     ),
                                   ],
@@ -292,7 +304,9 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                                         setState(() {
                                           toggleApplicationStatusRequest('In-Review');
                                         });
-                                        Navigator.of(context).pop();
+                                        Navigator.pushReplacement(context, MaterialPageRoute(
+                                            builder: (context) => JobDetailsPage(job: widget.job,)
+                                        ));
                                       },
                                     ),
                                   ],
@@ -337,7 +351,9 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                                         setState(() {
                                           toggleApplicationStatusRequest('Rejected');
                                         });
-                                        Navigator.of(context).pop();
+                                        Navigator.pushReplacement(context, MaterialPageRoute(
+                                            builder: (context) => JobDetailsPage(job: widget.job,)
+                                        ));
                                       },
                                     ),
                                   ],

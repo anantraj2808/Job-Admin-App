@@ -5,6 +5,7 @@ import 'package:job_admin_app/models/admin.dart';
 import 'package:job_admin_app/services/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
+import 'Presentation/SplashScreen/splash_screen.dart';
 import 'constants/colors.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
               future: SharedPrefs().getUserLoggedInStatusSharedPrefs(),
               builder: (context, snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting)
-                  return Container(child: Text('Anant',style: TextStyle(color: RED,fontSize: 25.0),),);
+                  return SplashScreen();
                 return (snapshot.hasData && snapshot.data) ? Home() : EmailPage();
               }
           ),

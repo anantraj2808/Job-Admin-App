@@ -10,6 +10,7 @@ import 'package:job_admin_app/services/shared_preferences.dart';
 Future<List<Applicant>> searchWorkers(String profession, String city, String state) async {
   String url = BASE_API + SEARCH_WORKERS;
   String jwt = await SharedPrefs().getUserJWTSharedPrefs();
+  print("JWT = $jwt");
   if (city == "Select a city") city = "";
   if (state == "Select a state") state = "";
   if (profession == "") profession = "Select a Profession";

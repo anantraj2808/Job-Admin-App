@@ -289,14 +289,19 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         backgroundColor: WHITE,
         elevation: 0,
-        actions: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            height: 24.0,
-            width: 24.0,
-            child: Image.asset('assets/images/password_change.png'),
-          )
-        ],
+//        actions: [
+//          GestureDetector(
+//            onTap: (){
+//              changePasswordRequest();
+//            },
+//            child: Container(
+//              margin: EdgeInsets.symmetric(horizontal: 20.0),
+//              height: 24.0,
+//              width: 24.0,
+//              child: Image.asset('assets/images/password_change.png'),
+//            ),
+//          )
+//        ],
       ),
       body: Stack(
         children: [
@@ -437,6 +442,12 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                         ),
+                        SizedBox(height: 30.0,),
+                        FlatButton(
+                          onPressed: () => showPasswordChangeDialog(context),
+                          color: BLACK,
+                          child: RegularTextReg("Change Password", 18.0, WHITE, BALOO),
+                        )
                       ],
                     ),
                   ),

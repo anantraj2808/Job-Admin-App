@@ -289,10 +289,23 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                       )
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: SingleChildScrollView(
+                  child: applicantList.length == 0 && acceptedList.length == 0 && inReviewList.length == 0 ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          child: Image.asset('assets/images/no_applicant.png'),
+                        ),
+                        SizedBox(height: 20.0,),
+                        RegularTextMed("No Application received yet", 24.0, BLACK, BALOO)
+                      ],
+                    ),
+                  ) :SingleChildScrollView(
                     child: Column(
                       children: [
-                        Row(
+                        applicantList.length != 0 ? Row(
                           children: [
                             Container(
                                 padding: EdgeInsets.symmetric(vertical: 7.0),
@@ -302,15 +315,15 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                             SizedBox(width: 10.0,),
                             RegularTextReg("\( ${applicantList.length} \)", 22.0, BLACK, BALOO),
                             Spacer(),
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => SelectedProfilesPage(acceptedList: acceptedList,inReviewList: inReviewList,)
-                                ));
-                              },
-                              child: RegularTextReg("VIEW ALL", 18.0, BLUE, BALOO))
+//                            GestureDetector(
+//                              onTap: (){
+//                                Navigator.push(context, MaterialPageRoute(
+//                                  builder: (context) => SelectedProfilesPage(acceptedList: acceptedList,inReviewList: inReviewList,)
+//                                ));
+//                              },
+//                              child: RegularTextReg("VIEW ALL", 18.0, BLUE, BALOO))
                           ],
-                        ),
+                        ) : Container(),
                         SizedBox(height: 10.0,),
                         Container(
                           child: ListView.builder(
@@ -321,7 +334,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                               return GestureDetector(
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => ApplicantDetailsPage(applicant: applicantList[index], isApplicant: true,)
+                                    builder: (context) => ApplicantDetailsPage(applicant: applicantList[index], isApplicant: true,job: widget.job,)
                                   ));
                                 },
                                 child: Container(
@@ -332,7 +345,81 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                               );
                             },
                           ),
-                        )
+                        ),
+                        SizedBox(height: 10.0,),
+                        acceptedList.length != 0 ? Row(
+                          children: [
+                            Container(
+                              height : 10.0,
+                              width : 10.0,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: GREEN
+                              ),
+                            ),
+                            RegularTextMed("    Accepted", 24.0, BLACK, BALOO),
+                            Spacer(),
+                          ],
+                        ) : Container(),
+                        acceptedList.length != 0 ? SizedBox(height: 10.0,) : Container(),
+                        Container(
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: acceptedList.length,
+                            itemBuilder: (context,index){
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => ApplicantDetailsPage(applicant: acceptedList[index], isApplicant: true,job: widget.job,)
+                                  ));
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 5.0),
+                                  height: 100.0,
+                                  child: applicantListTile(context, index, acceptedList[index]),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 10.0,),
+                        inReviewList.length != 0 ? Row(
+                          children: [
+                            Container(
+                              height : 10.0,
+                              width : 10.0,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: YELLOW
+                              ),
+                            ),
+                            RegularTextMed("    In-Review", 24.0, BLACK, BALOO),
+                            Spacer(),
+                          ],
+                        ) : Container(),
+                        inReviewList.length != 0 ? SizedBox(height: 10.0,) : Container(),
+                        Container(
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: inReviewList.length,
+                            itemBuilder: (context,index){
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => ApplicantDetailsPage(applicant: inReviewList[index], isApplicant: true,job: widget.job,)
+                                  ));
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 5.0),
+                                  height: 100.0,
+                                  child: applicantListTile(context, index, inReviewList[index]),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),

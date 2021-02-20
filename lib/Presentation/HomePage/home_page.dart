@@ -44,10 +44,12 @@ class _HomePageState extends State<HomePage> {
   List<String> citiesList = [];
   String _selectedCity = "Select a city";
   String _selectedProfession = "Select a Profession";
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _refreshIndicatorKey.currentState.show());
     widget.fromHome ? setUserDetailsRequest() : getCreatedJobsRequest(context);
     //filterActiveJobs();
   }
@@ -82,14 +84,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  getCreatedJobsRequest(BuildContext context) async {
+  Future<void> getCreatedJobsRequest(BuildContext context) async {
     setState(() {
       isLoading = true;
     });
     await getCreatedJobs(context).then((val){
       setState(() {
         createdJobList = val;
-        print("Created JOb list length = ${createdJobList.length}");
+        print("Created Job list length = ${createdJobList.length}");
       });
     });
     filterActiveJobs();
@@ -125,6 +127,11 @@ class _HomePageState extends State<HomePage> {
         textColor: WHITE,
         fontSize: 16.0
     );
+  }
+
+  Future<void> _refresh(){
+    print("Refreshed");
+    return getCreatedJobsRequest(context);
   }
 
   @override
@@ -272,75 +279,92 @@ class _HomePageState extends State<HomePage> {
           ) : PreferredSize(preferredSize: Size.fromHeight(0.0),
               child: Container())
       ),
-      body: !isSearchInitiated ? Stack(
-        children: [
-          if (isLoading) loader(context),
-          Opacity(
-            opacity: isLoading ? 0.3 : 1.0,
-            child: SafeArea(
-              child: Center(
-                child: Column(
-                  children: [
-                    filteredJobList.length != 0 ? Container(
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 8.0),
-                      child: RegularTextMed("Jobs you\'ve created \:", 22.0, BLACK, BALOO),
-                    ) : Container(),
-                    filteredJobList.length != 0 ? Container(
-                      height: 180.0,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: isViewAllEnabled ? filteredJobList.length+1 : filteredJobList.length,
-                        itemBuilder: (context,index){
-                          if (index == filteredJobList.length){
+      body: !isSearchInitiated ? RefreshIndicator(
+        key: _refreshIndicatorKey,
+        onRefresh: _refresh,
+        child: Stack(
+          children: [
+            if (isLoading) loader(context),
+            Opacity(
+              opacity: isLoading ? 0.0 : 1.0,
+              child: SafeArea(
+                child: filteredJobList.length != 0 ? Center(
+                  child: Column(
+                    children: [
+                      filteredJobList.length != 0 ? Container(
+                        alignment: Alignment.centerLeft,
+                        margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 8.0),
+                        child: RegularTextMed("Jobs you\'ve created \:", 22.0, BLACK, BALOO),
+                      ) : Container(),
+                      filteredJobList.length != 0 ? Container(
+                        height: 180.0,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: isViewAllEnabled ? filteredJobList.length+1 : filteredJobList.length,
+                          itemBuilder: (context,index){
+                            if (index == filteredJobList.length){
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(createRoute(JobListingPage(createdJobsList: createdJobList,)));
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(top: 10.0,bottom: 20.0,left: 12.0,right: 12.0),
+                                  width: 200.0,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: BLACK),
+                                      borderRadius: BorderRadius.circular(5.0)
+                                  ),
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    child: RegularTextMed("VIEW ALL", 20.0, BLACK, BALOO),
+                                  ),
+                                ),
+                              );
+                            }
                             return GestureDetector(
                               onTap: (){
-                                Navigator.of(context).push(createRoute(JobListingPage(createdJobsList: createdJobList,)));
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => JobDetailsPage(job: filteredJobList[index],)
+                                ));
                               },
                               child: Container(
-                                margin: EdgeInsets.only(top: 10.0,bottom: 20.0,left: 12.0,right: 12.0),
+                                margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 10.0,bottom: 20.0),
+                                height: 150.0,
                                 width: 200.0,
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: BLACK),
-                                    borderRadius: BorderRadius.circular(5.0)
-                                ),
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: RegularTextMed("VIEW ALL", 20.0, BLACK, BALOO),
-                                ),
+                                child: jobLListCard(filteredJobList[index], context, index),
                               ),
                             );
-                          }
-                          return GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) => JobDetailsPage(job: filteredJobList[index],)
-                              ));
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 10.0,bottom: 20.0),
-                              height: 150.0,
-                              width: 200.0,
-                              child: jobLListCard(filteredJobList[index], context, index),
-                            ),
-                          );
-                        },
+                          },
+                        ),
+                      ) : Container()
+                    ],
+                  ),
+                ) : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.asset('assets/images/no_job.png'),
                       ),
-                    ) : Container()
-                  ],
+                      SizedBox(height: 20.0,),
+                      RegularTextMed("No Jobs created yet", 24.0, BLACK, BALOO)
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ) :
       Stack(
         children: [
           if (isLoading) loader(context),
           Opacity(
-            opacity: isLoading ? 0.3 : 1.0,
+            opacity: isLoading ? 0.0 : 1.0,
             child: SafeArea(
-              child: Container(
+              child: workersList.length != 0 ? Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10.0),
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
@@ -360,6 +384,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   },
+                ),
+              ) : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      child: Image.asset('assets/images/no_worker.png'),
+                    ),
+                    SizedBox(height: 20.0,),
+                    RegularTextMed("No suitable worker found", 24.0, BLACK, BALOO)
+                  ],
                 ),
               ),
             ),
