@@ -29,6 +29,7 @@ Future<List<Job>> getCreatedJobs(BuildContext context) async {
   var data = responseBody['data'];
 
   if (response.statusCode == 200){
+    temp.clear();
     for (int i=0 ; i<data.length ; i++){
       temp.add(Job().jobFromJson(data[i]));
       print("Job $i = ${temp[i].profession.toString()}");

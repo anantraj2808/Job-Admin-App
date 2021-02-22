@@ -7,6 +7,7 @@ import 'package:job_admin_app/Presentation/HomePage/Widgets/job_list_card.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/Widget/applicant_tile.dart';
 import 'package:job_admin_app/Presentation/JobDetailsPage/job_details_page.dart';
 import 'package:job_admin_app/Presentation/JobListingPage/View/job_listing_page.dart';
+import 'package:job_admin_app/Presentation/SplashScreen/splash_screen.dart';
 import 'package:job_admin_app/Presentation/post_a_job_form.dart';
 import 'package:job_admin_app/WidgetsAndStyles/loader.dart';
 import 'package:job_admin_app/WidgetsAndStyles/text_styles.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
   List<Job> filteredJobList = [];
   List<Applicant> workersList = [];
   bool isLoading = false;
+  bool settingDetails = false;
   String _selectedState = statesList[0];
   List<String> citiesList = [];
   String _selectedCity = "Select a city";
@@ -55,6 +57,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   filterActiveJobs(){
+    filteredJobList.clear();
     if (createdJobList.length <= 3){
       setState(() {
         filteredJobList = createdJobList;
@@ -69,6 +72,8 @@ class _HomePageState extends State<HomePage> {
       }
       if (filteredJobList.length == 3) break;
     }
+    print("Filtered Job list length = ${filteredJobList.length}");
+    filteredJobList = filteredJobList.toSet().toList();
     setState(() {
     });
 
@@ -77,10 +82,14 @@ class _HomePageState extends State<HomePage> {
   setUserDetailsRequest() async {
     setState(() {
       isLoading = true;
+      settingDetails = true;
     });
     String jwt = await SharedPrefs().getUserJWTSharedPrefs();
     await setUserDetails(context, jwt).then((val){
       if(val) getCreatedJobsRequest(context);
+    });
+    setState(() {
+      settingDetails = false;
     });
   }
 
@@ -129,17 +138,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> _refresh(){
-    print("Refreshed");
-    return getCreatedJobsRequest(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     var ht = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     Admin userProvider = Provider.of<Admin>(context);
-    return Scaffold(
+    return !(isLoading && settingDetails) ?  Scaffold(
       appBar: AppBar(
         backgroundColor: BLACK,
         title: Text("Job Admin App"),
@@ -279,84 +283,81 @@ class _HomePageState extends State<HomePage> {
           ) : PreferredSize(preferredSize: Size.fromHeight(0.0),
               child: Container())
       ),
-      body: !isSearchInitiated ? RefreshIndicator(
-        key: _refreshIndicatorKey,
-        onRefresh: _refresh,
-        child: Stack(
-          children: [
-            if (isLoading) loader(context),
-            Opacity(
-              opacity: isLoading ? 0.0 : 1.0,
-              child: SafeArea(
-                child: filteredJobList.length != 0 ? Center(
-                  child: Column(
-                    children: [
-                      filteredJobList.length != 0 ? Container(
-                        alignment: Alignment.centerLeft,
-                        margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 8.0),
-                        child: RegularTextMed("Jobs you\'ve created \:", 22.0, BLACK, BALOO),
-                      ) : Container(),
-                      filteredJobList.length != 0 ? Container(
-                        height: 180.0,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: isViewAllEnabled ? filteredJobList.length+1 : filteredJobList.length,
-                          itemBuilder: (context,index){
-                            if (index == filteredJobList.length){
-                              return GestureDetector(
-                                onTap: (){
-                                  Navigator.of(context).push(createRoute(JobListingPage(createdJobsList: createdJobList,)));
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(top: 10.0,bottom: 20.0,left: 12.0,right: 12.0),
-                                  width: 200.0,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: BLACK),
-                                      borderRadius: BorderRadius.circular(5.0)
-                                  ),
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    child: RegularTextMed("VIEW ALL", 20.0, BLACK, BALOO),
-                                  ),
-                                ),
-                              );
-                            }
+      body: !isSearchInitiated ? Stack(
+        children: [
+          if (isLoading && settingDetails) SplashScreen(),
+          if (isLoading && !settingDetails) loader(context),
+          Opacity(
+            opacity: isLoading ? 0.0 : 1.0,
+            child: SafeArea(
+              child: filteredJobList.length != 0 ? Center(
+                child: Column(
+                  children: [
+                    filteredJobList.length != 0 ? Container(
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 8.0),
+                      child: RegularTextMed("Jobs you\'ve created \:", 22.0, BLACK, BALOO),
+                    ) : Container(),
+                    filteredJobList.length != 0 ? Container(
+                      height: 180.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: isViewAllEnabled ? filteredJobList.toSet().toList().length+1 : filteredJobList.toSet().toList().length,
+                        itemBuilder: (context,index){
+                          if (index == filteredJobList.length){
                             return GestureDetector(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => JobDetailsPage(job: filteredJobList[index],)
-                                ));
+                                Navigator.of(context).push(createRoute(JobListingPage(createdJobsList: createdJobList,)));
                               },
                               child: Container(
-                                margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 10.0,bottom: 20.0),
-                                height: 150.0,
+                                margin: EdgeInsets.only(top: 10.0,bottom: 20.0,left: 12.0,right: 12.0),
                                 width: 200.0,
-                                child: jobLListCard(filteredJobList[index], context, index),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: BLACK),
+                                    borderRadius: BorderRadius.circular(5.0)
+                                ),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: RegularTextMed("VIEW ALL", 20.0, BLACK, BALOO),
+                                ),
                               ),
                             );
-                          },
-                        ),
-                      ) : Container()
-                    ],
-                  ),
-                ) : Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 100,
-                        child: Image.asset('assets/images/no_job.png'),
+                          }
+                          return GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => JobDetailsPage(job: filteredJobList[index],)
+                              ));
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 10.0,bottom: 20.0),
+                              height: 150.0,
+                              width: 200.0,
+                              child: jobLListCard(filteredJobList[index], context, index),
+                            ),
+                          );
+                        },
                       ),
-                      SizedBox(height: 20.0,),
-                      RegularTextMed("No Jobs created yet", 24.0, BLACK, BALOO)
-                    ],
-                  ),
+                    ) : Container()
+                  ],
+                ),
+              ) : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 100,
+                      child: Image.asset('assets/images/no_job.png'),
+                    ),
+                    SizedBox(height: 20.0,),
+                    RegularTextMed("No Jobs created yet", 24.0, BLACK, BALOO)
+                  ],
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ) :
       Stack(
         children: [
@@ -418,6 +419,6 @@ class _HomePageState extends State<HomePage> {
           child: Center(child: RegularTextMedCenter("Post a Job", ht*0.027, WHITE, BALOO)),
         ),
       ),
-    );
+    ) : SplashScreen();
   }
 }

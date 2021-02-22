@@ -30,8 +30,8 @@ class _PostJobFormState extends State<PostJobForm> {
   TimeOfDay endPicked = TimeOfDay(hour: 17, minute: 0);
 
   getTime(TimeOfDay timeOfDay){
-    if(timeOfDay.hour < 12) return "${timeOfDay.hour.toString().length == 1 ? "0" : ""}" + timeOfDay.hour.toString() + "\:" + "${timeOfDay.minute.toString().length == 1 ? "0" : ""}" + timeOfDay.minute.toString() + " AM";
-    if(timeOfDay.hour >= 12) return "${(timeOfDay.hour - 12 ).toString().length == 1 ? "0" : ""}" + (timeOfDay.hour - 12 ).toString() + "\:" + "${timeOfDay.minute.toString().length == 1 ? "0" : ""}" + timeOfDay.minute.toString() + " PM";
+    if(timeOfDay.hour <= 12) return "${timeOfDay.hour.toString().length == 1 ? "0" : ""}" + timeOfDay.hour.toString() + "\:" + "${timeOfDay.minute.toString().length == 1 ? "0" : ""}" + timeOfDay.minute.toString() + " AM";
+    if(timeOfDay.hour > 12) return "${(timeOfDay.hour - 12 ).toString().length == 1 ? "0" : ""}" + (timeOfDay.hour - 12 ).toString() + "\:" + "${timeOfDay.minute.toString().length == 1 ? "0" : ""}" + timeOfDay.minute.toString() + " PM";
   }
 
   TextEditingController emailTEC = TextEditingController();
@@ -41,7 +41,6 @@ class _PostJobFormState extends State<PostJobForm> {
   TextEditingController openingsTEC = TextEditingController();
   TextEditingController qualificationsTEC = TextEditingController();
   TextEditingController experienceTEC = TextEditingController();
-  TextEditingController timingTEC = TextEditingController();
   TextEditingController addressTEC = TextEditingController();
   TextEditingController jobDescriptionTEC = TextEditingController();
 
@@ -125,7 +124,7 @@ class _PostJobFormState extends State<PostJobForm> {
       minimumQualifications: qualificationsTEC.text.toString(),
       language: _language,
       experience: experienceTEC.text.toString(),
-      workTimings: timingTEC.text.toString(),
+      workTimings: getTime(startPicked) + " \: " + getTime(endPicked),
       address: addressTEC.text
     );
     await postJob(job, jwt).then((val){
@@ -642,7 +641,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                   border: Border.all(color: BLACK)
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   RegularTextReg("Timings : ", 18.0, BLACK, BALOO),
                                   IconButton(
@@ -659,9 +658,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                     },
                                   ),
                                   RegularTextReg(getTime(startPicked), 18.0, BLACK, BALOO),
-                                  Spacer(flex: 8,),
                                   RegularTextReg("-", 18.0, BLACK, BALOO),
-                                  Spacer(flex: 1,),
                                   IconButton(
                                     icon: Icon(Icons.timer),
                                     onPressed: () async {
