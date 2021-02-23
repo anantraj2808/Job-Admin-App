@@ -28,6 +28,8 @@ class _PostJobFormState extends State<PostJobForm> {
   String _phone = "";
   TimeOfDay startPicked = TimeOfDay(hour: 9, minute: 0);
   TimeOfDay endPicked = TimeOfDay(hour: 17, minute: 0);
+  TimeOfDay startPickedInitial;
+  TimeOfDay endPickedInitial;
 
   getTime(TimeOfDay timeOfDay){
     if(timeOfDay.hour <= 12) return "${timeOfDay.hour.toString().length == 1 ? "0" : ""}" + timeOfDay.hour.toString() + "\:" + "${timeOfDay.minute.toString().length == 1 ? "0" : ""}" + timeOfDay.minute.toString() + " AM";
@@ -643,34 +645,43 @@ class _PostJobFormState extends State<PostJobForm> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  RegularTextReg("Timings : ", 18.0, BLACK, BALOO),
+                                  RegularTextReg("Timings: ", 18.0, BLACK, BALOO),
                                   IconButton(
                                     icon: Icon(Icons.timer),
                                     onPressed: () async {
+                                      startPickedInitial = startPicked;
                                       startPicked = await showTimePicker(
                                         context: context,
                                         initialTime: startPicked,
-                                        cancelText: "",
-                                        confirmText: "      Okay       "
                                       );
+                                      if (startPicked == null ) startPicked = startPickedInitial;
                                       setState(() {
                                       });
                                     },
                                   ),
-                                  RegularTextReg(getTime(startPicked), 18.0, BLACK, BALOO),
+                                  Container(
+                                      transform: Matrix4.translationValues(-10, 0, 0),
+                                      child: RegularTextReg(getTime(startPicked), 18.0, BLACK, BALOO)),
                                   RegularTextReg("-", 18.0, BLACK, BALOO),
-                                  IconButton(
-                                    icon: Icon(Icons.timer),
-                                    onPressed: () async {
-                                        endPicked = await showTimePicker(
-                                          context: context,
-                                          initialTime: endPicked,
-                                        );
-                                        setState(() {
-                                        });
-                                    },
+                                  Container(
+                                    transform: Matrix4.translationValues(-2, 0, 0),
+                                    child: IconButton(
+                                      icon: Icon(Icons.timer),
+                                      onPressed: () async {
+                                        endPickedInitial = endPicked;
+                                          endPicked = await showTimePicker(
+                                            context: context,
+                                            initialTime: endPicked,
+                                          );
+                                        if (endPicked == null ) endPicked = endPickedInitial;
+                                          setState(() {
+                                          });
+                                      },
+                                    ),
                                   ),
-                                  RegularTextReg(getTime(endPicked), 18.0, BLACK, BALOO),
+                                  Container(
+                                      transform: Matrix4.translationValues(-10, 0, 0),
+                                    child: RegularTextReg(getTime(endPicked), 18.0, BLACK, BALOO)),
                                 ],
                               ),
                             ),
