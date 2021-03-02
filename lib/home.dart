@@ -56,14 +56,14 @@ class _HomeState extends State<Home> {
         items: [
           BottomNavigationBarItem(
               title: Text("Home", style: TextStyle(
-                  color: _selectedIndex == 0 ? BLACK : GREY
+                  color: _selectedIndex == 0 ? THEME_DARK_BLUE : THEME_MID_LIGHT_BLUE
               ),),
-              icon: Icon(Icons.home,color: _selectedIndex == 0 ? BLACK : GREY,)),
+              icon: Icon(Icons.home,color: _selectedIndex == 0 ? THEME_DARK_BLUE : THEME_MID_LIGHT_BLUE,)),
           BottomNavigationBarItem(
               title: Text("Profile", style: TextStyle(
-                  color: _selectedIndex == 1 ? BLACK : GREY
+                  color: _selectedIndex == 1 ? THEME_DARK_BLUE : THEME_MID_LIGHT_BLUE
               ),),
-              icon: Icon(Icons.person,color: _selectedIndex == 1 ? BLACK : GREY)),
+              icon: Icon(Icons.person,color: _selectedIndex == 1 ? THEME_DARK_BLUE : THEME_MID_LIGHT_BLUE)),
           ],
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,

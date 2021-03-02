@@ -8,12 +8,12 @@ import 'package:job_admin_app/models/job.dart';
 jobLListCard(Job job, BuildContext context, int index){
   print("Job ID = "+job.id);
   var ht = MediaQuery.of(context).size.height;
-  Color textColor = index%2 == 0 ? WHITE : BLACK;
-  Color shadyColor = index%2 == 0 ? SHADY_BLACK : SHADY_WHITE;
+  Color textColor = index%2 == 0 ? WHITE : THEME_DARK_BLUE;
+  Color shadyColor = index%2 == 0 ? THEME_MID_BLUE : THEME_MID_LIGHT_BLUE;
   int professionIndex = PROFESSION_LIST.indexOf(job.profession) - 1;
   bool isJobActive = job.isActive == "true" ? true : false;
   return Material(
-    color: index%2 == 0 ? BLACK : WHITE,
+    color: index%2 == 0 ? THEME_DARK_BLUE : THEME_LIGHT_BLUE,
     elevation: 10.0,
     borderRadius: BorderRadius.circular(10.0),
     child: Container(

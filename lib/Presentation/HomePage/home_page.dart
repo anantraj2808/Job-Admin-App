@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
-        backgroundColor: BLACK,
+        backgroundColor: THEME_MID_BLUE,
         textColor: WHITE,
         fontSize: 16.0
     );
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
     Admin userProvider = Provider.of<Admin>(context);
     return !(isLoading && settingDetails) ?  Scaffold(
       appBar: AppBar(
-        backgroundColor: BLACK,
+        backgroundColor: THEME_DARK_BLUE,
         title: Text("Job Admin App"),
         actions: [
           Container(
@@ -296,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                     filteredJobList.length != 0 ? Container(
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.only(left: 12.0,right: 12.0,top: 8.0),
-                      child: RegularTextMed("Jobs you\'ve created \:", 22.0, BLACK, BALOO),
+                      child: RegularTextMed("Jobs you\'ve created \:", 22.0, THEME_DARK_BLUE, BALOO),
                     ) : Container(),
                     filteredJobList.length != 0 ? Container(
                       height: 180.0,
@@ -313,12 +313,12 @@ class _HomePageState extends State<HomePage> {
                                 margin: EdgeInsets.only(top: 10.0,bottom: 20.0,left: 12.0,right: 12.0),
                                 width: 200.0,
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: BLACK),
+                                    border: Border.all(color: THEME_DARK_BLUE),
                                     borderRadius: BorderRadius.circular(5.0)
                                 ),
                                 child: Container(
                                   alignment: Alignment.center,
-                                  child: RegularTextMed("VIEW ALL", 20.0, BLACK, BALOO),
+                                  child: RegularTextMed("VIEW ALL", 20.0, THEME_DARK_BLUE, BALOO),
                                 ),
                               ),
                             );
@@ -351,7 +351,7 @@ class _HomePageState extends State<HomePage> {
                       child: Image.asset('assets/images/no_job.png'),
                     ),
                     SizedBox(height: 20.0,),
-                    RegularTextMed("No Jobs created yet", 24.0, BLACK, BALOO)
+                    RegularTextMed("No Jobs created yet", 24.0, THEME_DARK_BLUE, BALOO)
                   ],
                 ),
               ),
@@ -396,7 +396,7 @@ class _HomePageState extends State<HomePage> {
                       child: Image.asset('assets/images/no_worker.png'),
                     ),
                     SizedBox(height: 20.0,),
-                    RegularTextMed("No suitable worker found", 24.0, BLACK, BALOO)
+                    RegularTextMed("No suitable worker found", 24.0, THEME_DARK_BLUE, BALOO)
                   ],
                 ),
               ),
@@ -413,7 +413,7 @@ class _HomePageState extends State<HomePage> {
           width: ht*0.17,
           height: ht*0.052,
           decoration: BoxDecoration(
-            color: BLACK,
+            color: THEME_DARK_BLUE,
             borderRadius: BorderRadius.circular(ht*0.013)
           ),
           child: Center(child: RegularTextMedCenter("Post a Job", ht*0.027, WHITE, BALOO)),

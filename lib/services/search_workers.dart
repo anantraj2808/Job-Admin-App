@@ -13,7 +13,7 @@ Future<List<Applicant>> searchWorkers(String profession, String city, String sta
   print("JWT = $jwt");
   if (city == "Select a city") city = "";
   if (state == "Select a state") state = "";
-  if (profession == "") profession = "Select a Profession";
+  if (profession == "") profession = "";
 
   List<Applicant> applicantList = [];
   Map<String,dynamic> map = {
