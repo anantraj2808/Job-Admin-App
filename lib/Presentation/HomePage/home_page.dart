@@ -413,7 +413,7 @@ class _HomePageState extends State<HomePage> {
           width: ht*0.17,
           height: ht*0.052,
           decoration: BoxDecoration(
-            color: THEME_DARK_BLUE,
+            color: THEME_BLACK_BLUE,
             borderRadius: BorderRadius.circular(ht*0.013)
           ),
           child: Center(child: RegularTextMedCenter("Post a Job", ht*0.027, WHITE, BALOO)),

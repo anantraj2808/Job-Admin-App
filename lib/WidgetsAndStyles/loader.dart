@@ -12,7 +12,7 @@ Widget loader(BuildContext context){
     width: width,
     child: Center(
         child: LoadingFlipping.circle(
-          borderColor: BLACK,
+          borderColor: THEME_DARK_BLUE,
           borderSize: 3.0,
           size: 50.0,
           backgroundColor: WHITE,

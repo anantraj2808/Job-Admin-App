@@ -36,7 +36,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
     for (int i=0 ; i<widget.applicant.occupations.length ; i++){
       widgetList.add(
         Chip(
-          backgroundColor: BLACK,
+          backgroundColor: THEME_BLACK_BLUE,
           label: RegularTextRegCenter(widget.applicant.occupations[i].occupation, 16.0, WHITE, BALOO),
         )
       );
@@ -66,7 +66,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
-            backgroundColor: BLACK,
+            backgroundColor: THEME_BLACK_BLUE,
             textColor: WHITE,
             fontSize: 16.0
         );
@@ -92,7 +92,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
               color: text == "Accepted" ? GREEN : YELLOW
           ),
         ),
-        RegularTextMed("    $text", 24.0, BLACK, BALOO)
+        RegularTextMed("    $text", 24.0, THEME_BLACK_BLUE, BALOO)
       ],
     );
   }
@@ -107,7 +107,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
         elevation: 0,
         backgroundColor: WHITE,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,color: BLACK,),
+          icon: Icon(Icons.arrow_back_ios,color: THEME_BLACK_BLUE,),
           onPressed: (){
             if(widget.isApplicant){
               Navigator.pushReplacement(context, MaterialPageRoute(
@@ -138,9 +138,9 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            RegularTextMed(widget.applicant.name, 28.0, BLACK, BALOO),
+                            RegularTextMed(widget.applicant.name, 28.0, THEME_BLACK_BLUE, BALOO),
                             SizedBox(width: 10.0,),
-                            RegularTextReg("\( ${widget.applicant.age} ${widget.applicant.gender.substring(0,1)} \)", 22.0, BLACK, BALOO)
+                            RegularTextReg("\( ${widget.applicant.age} ${widget.applicant.gender.substring(0,1)} \)", 22.0, THEME_BLACK_BLUE, BALOO)
                           ],
                         ),
                         SizedBox(height: 10.0,),
@@ -155,7 +155,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                                   color: widget.applicant.appointmentStatus == "Accepted" ? GREEN : YELLOW
                               ),
                             ),
-                            RegularTextMed("    ${widget.applicant.appointmentStatus}", 20.0, BLACK, BALOO)
+                            RegularTextMed("    ${widget.applicant.appointmentStatus}", 20.0, THEME_BLACK_BLUE, BALOO)
                           ],
                         ) : Container(),
                         widget.isApplicant && widget.applicant.appointmentStatus != "applied" ? SizedBox(height: 20.0,) : Container(),
@@ -176,15 +176,15 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                                     height: 40.0,
                                     width: 40.0,
                                     decoration: BoxDecoration(
-                                        color: BLACK_26,
+                                        color: THEME_MID_LIGHT_BLUE,
                                         shape: BoxShape.circle
                                     ),
                                     child: Center(
-                                      child: Icon(Icons.phone_in_talk,color: BLACK,),
+                                      child: Icon(Icons.phone_in_talk,color: THEME_BLACK_BLUE,),
                                     ),
                                   ),
                                   SizedBox(width: 15.0,),
-                                  RegularTextReg("+91 - "+widget.applicant.phoneNumber, 24.0, BLACK, BALOO)
+                                  RegularTextReg("+91 - "+widget.applicant.phoneNumber, 24.0, THEME_BLACK_BLUE, BALOO)
                                 ],
                               ),
                               SizedBox(height: 10.0,),
@@ -195,15 +195,15 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                                     height: 30.0,
                                     width: 30.0,
                                     decoration: BoxDecoration(
-                                        color: BLACK_26,
+                                        color: THEME_MID_LIGHT_BLUE,
                                         shape: BoxShape.circle
                                     ),
                                     child: Center(
-                                      child: Icon(Icons.location_on_outlined,color: BLACK,),
+                                      child: Icon(Icons.location_on_outlined,color: THEME_BLACK_BLUE,),
                                     ),
                                   ),
                                   SizedBox(width: 15.0,),
-                                  RegularTextReg(widget.applicant.city + "\, " + widget.applicant.state, 20.0, BLACK, BALOO)
+                                  RegularTextReg(widget.applicant.city + "\, " + widget.applicant.state, 20.0, THEME_BLACK_BLUE, BALOO)
                                 ],
                               ),
                               SizedBox(height: 10.0,),
@@ -214,15 +214,15 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                                     height: 30.0,
                                     width: 30.0,
                                     decoration: BoxDecoration(
-                                        color: BLACK_26,
+                                        color: THEME_MID_LIGHT_BLUE,
                                         shape: BoxShape.circle
                                     ),
                                     child: Center(
-                                      child: Icon(Icons.language_outlined,color: BLACK,size: 18.0,),
+                                      child: Icon(Icons.language_outlined,color: THEME_BLACK_BLUE,size: 18.0,),
                                     ),
                                   ),
                                   SizedBox(width: 15.0,),
-                                  RegularTextReg(widget.applicant.language, 20.0, BLACK, BALOO)
+                                  RegularTextReg(widget.applicant.language, 20.0, THEME_BLACK_BLUE, BALOO)
                                 ],
                               ),
                             ],
@@ -232,8 +232,8 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            RegularTextReg("Preferred Salary   :  INR   ", 20.0, BLACK, BALOO),
-                            RegularTextMed(widget.applicant.salaryRange, 22.0, BLACK, BALOO)
+                            RegularTextReg("Preferred Salary   :  INR   ", 20.0, THEME_BLACK_BLUE, BALOO),
+                            RegularTextMed(widget.applicant.salaryRange, 22.0, THEME_BLACK_BLUE, BALOO)
                           ],
                         ),
                         SizedBox(height: 30.0,),
@@ -272,7 +272,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                             width: 170.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
-                                color: BLACK
+                                color: THEME_BLACK_BLUE
                             ),
                             child: Container(
                               transform: Matrix4.translationValues(0, -8, 0),
@@ -319,7 +319,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                             width: 170.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
-                                color: BLACK
+                                color: THEME_BLACK_BLUE
                             ),
                             child: Container(
                               transform: Matrix4.translationValues(0, -8, 0),
@@ -366,7 +366,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                             width: 170.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
-                                color: BLACK
+                                color: THEME_BLACK_BLUE
                             ),
                             child: Container(
                               transform: Matrix4.translationValues(0, -8, 0),
@@ -389,7 +389,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
 //                                  color: widget.applicant.appointmentStatus == "Accepted" ? GREEN : YELLOW
 //                              ),
 //                            ),
-//                            RegularTextMed("    ${widget.applicant.appointmentStatus}", 24.0, BLACK, BALOO)
+//                            RegularTextMed("    ${widget.applicant.appointmentStatus}", 24.0, THEME_BLACK_BLUE, BALOO)
 //                          ],
 //                        ) : Container()
                       ],
@@ -398,7 +398,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      border: Border(top: BorderSide(color: BLACK,width: 0.5))
+                      border: Border(top: BorderSide(color: THEME_BLACK_BLUE,width: 0.5))
                   ),
                   height: ht*0.1,
                   width: wd,
@@ -409,7 +409,7 @@ class _ApplicantDetailsPageState extends State<ApplicantDetailsPage> {
                       onPressed: (){
                         _callNumber();
                       },
-                      color: BLACK,
+                      color: THEME_BLACK_BLUE,
                       child: RegularTextReg("Contact Now", 18.0, WHITE, BALOO),
                     ),
                   ),

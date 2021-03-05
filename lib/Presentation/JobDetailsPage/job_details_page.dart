@@ -91,7 +91,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                         leading:
                         //Container(),
                         IconButton(
-                          icon: Icon(Icons.arrow_back_ios,color: BLACK,),
+                          icon: Icon(Icons.arrow_back_ios,color: THEME_BLACK_BLUE,),
                           onPressed: (){
                             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                               builder: (context) => Home()
@@ -105,15 +105,15 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              RegularTextMed(job.profession, 22.0, BLACK, BALOO),
+                              RegularTextMed(job.profession, 22.0, THEME_BLACK_BLUE, BALOO),
                               Container(
                                 transform: Matrix4.translationValues(0, -5, 0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.location_on_outlined,color: BLACK,),
+                                    Icon(Icons.location_on_outlined,color: THEME_BLACK_BLUE,),
                                     SizedBox(width: 5.0,),
-                                    Flexible(child: RegularTextRegOverflow("${job.city}\, ${job.state}", 18.0, BLACK, 1, BALOO)),
+                                    Flexible(child: RegularTextRegOverflow("${job.city}\, ${job.state}", 18.0, THEME_BLACK_BLUE, 1, BALOO)),
                                   ],
                                 ),
                               ),
@@ -169,7 +169,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                           decoration: BoxDecoration(
 //                    border: Border(
 //                      bottom: BorderSide(
-//                        color: BLACK
+//                        color: THEME_BLACK_BLUE
 //                      )
 //                    )
                           ),
@@ -181,81 +181,81 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                 SizedBox(height: 10.0,),
                                 Row(
                                   children: [
-                                    Icon(Icons.monetization_on_outlined,color: BLACK,size: 20.0,),
+                                    Icon(Icons.monetization_on_outlined,color: THEME_BLACK_BLUE,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("₹ ${job.salary} /${job.payBasis == "Per Day" ? " day" : " month"}", 22.0, BLACK, BALOO),
+                                    RegularTextReg("₹ ${job.salary} /${job.payBasis == "Per Day" ? " day" : " month"}", 22.0, THEME_BLACK_BLUE, BALOO),
                                     Spacer(),
-                                    Icon(Icons.timer,color: BLACK,size: 20.0,),
+                                    Icon(Icons.timer,color: THEME_BLACK_BLUE,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("${job.dutyType}", 22.0, BLACK, BALOO),
+                                    RegularTextReg("${job.dutyType}", 22.0, THEME_BLACK_BLUE, BALOO),
                                   ],
                                 ),
                                 Row(
                                   children: [
-                                    Icon(Icons.format_list_numbered,color: BLACK,size: 20.0,),
+                                    Icon(Icons.format_list_numbered,color: THEME_BLACK_BLUE,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("${job.openings} Openings", 22.0, BLACK, BALOO),
+                                    RegularTextReg("${job.openings} Openings", 22.0, THEME_BLACK_BLUE, BALOO),
                                     Spacer(),
-                                    Icon(Icons.language_outlined,color: BLACK,size: 20.0,),
+                                    Icon(Icons.language_outlined,color: THEME_BLACK_BLUE,size: 20.0,),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("${job.language}", 22.0, BLACK, BALOO),
+                                    RegularTextReg("${job.language}", 22.0, THEME_BLACK_BLUE, BALOO),
                                   ],
                                 ),
                                 SizedBox(height: 5.0,),
                                 Row(
                                   children: [
-                                    RegularTextReg("•", 18.0, BLACK, BALOO),
+                                    RegularTextReg("•", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("Job Desc : ", 18.0, BLACK, BALOO),
+                                    RegularTextReg("Job Desc : ", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextMed("${job.jobDescription}", 18.0, BLACK, BALOO),
+                                    RegularTextMed("${job.jobDescription}", 18.0, THEME_BLACK_BLUE, BALOO),
                                   ],
                                 ),
                                 SizedBox(height: 5.0,),
                                 Row(
                                   children: [
-                                    RegularTextReg("•", 18.0, BLACK, BALOO),
+                                    RegularTextReg("•", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("Min Qualification : ", 18.0, BLACK, BALOO),
+                                    RegularTextReg("Min Qualification : ", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    Flexible(child: RegularTextMedOverflow("${job.minimumQualifications}", 18.0, BLACK, 1, BALOO)),
+                                    Flexible(child: RegularTextMedOverflow("${job.minimumQualifications}", 18.0, THEME_BLACK_BLUE, 1, BALOO)),
                                   ],
                                 ),
                                 SizedBox(height: 5.0,),
                                 Row(
                                   children: [
-                                    RegularTextReg("•", 18.0, BLACK, BALOO),
+                                    RegularTextReg("•", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("Min Experience : ", 18.0, BLACK, BALOO),
+                                    RegularTextReg("Min Experience : ", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    Flexible(child: RegularTextMedOverflow("${job.experience}", 18.0, BLACK, 1, BALOO)),
+                                    Flexible(child: RegularTextMedOverflow("${job.experience}", 18.0, THEME_BLACK_BLUE, 1, BALOO)),
                                   ],
                                 ),
                                 SizedBox(height: 5.0,),
                                 Row(
                                   children: [
-                                    RegularTextReg("•", 18.0, BLACK, BALOO),
+                                    RegularTextReg("•", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("Work timings : ", 18.0, BLACK, BALOO),
+                                    RegularTextReg("Work timings : ", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextMed("${job.workTimings}", 18.0, BLACK, BALOO),
+                                    RegularTextMed("${job.workTimings}", 18.0, THEME_BLACK_BLUE, BALOO),
                                   ],
                                 ),
                                 SizedBox(height: 5.0,),
                                 Row(
                                   children: [
-                                    RegularTextReg("•", 18.0, BLACK, BALOO),
+                                    RegularTextReg("•", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextReg("Address : ", 18.0, BLACK, BALOO),
+                                    RegularTextReg("Address : ", 18.0, THEME_BLACK_BLUE, BALOO),
                                     SizedBox(width: 5.0,),
-                                    RegularTextMed("${job.address}", 18.0, BLACK, BALOO),
+                                    RegularTextMed("${job.address}", 18.0, THEME_BLACK_BLUE, BALOO),
                                   ],
                                 ),
 //                                SizedBox(height: 15.0,),
 //                                Row(
 //                                  mainAxisAlignment: MainAxisAlignment.center,
 //                                  children: [
-//                                    RegularTextReg("Inactive  ", 16.0, BLACK, BALOO),
+//                                    RegularTextReg("Inactive  ", 16.0, THEME_BLACK_BLUE, BALOO),
 //                                    GestureDetector(
 //                                      onTap: (){
 //                                        setState(() {
@@ -270,7 +270,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
 //                                        checked: jobStatus,
 //                                      ),
 //                                    ),
-//                                    RegularTextReg("   Active", 16.0, BLACK, BALOO),
+//                                    RegularTextReg("   Active", 16.0, THEME_BLACK_BLUE, BALOO),
 //                                  ],
 //                                )
                               ],
@@ -284,7 +284,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                   decoration: BoxDecoration(
                       border: Border(
                           top: BorderSide(
-                              color: BLACK
+                              color: THEME_BLACK_BLUE
                           )
                       )
                   ),
@@ -299,7 +299,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                           child: Image.asset('assets/images/no_applicant.png'),
                         ),
                         SizedBox(height: 20.0,),
-                        RegularTextMed("No Application received yet", 24.0, BLACK, BALOO)
+                        RegularTextMed("No Application received yet", 24.0, THEME_BLACK_BLUE, BALOO)
                       ],
                     ),
                   ) :SingleChildScrollView(
@@ -310,10 +310,10 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                             Container(
                                 padding: EdgeInsets.symmetric(vertical: 7.0),
                                 alignment: Alignment.centerLeft,
-                                child: RegularTextMed("New Applicants", 24.0, BLACK, BALOO)
+                                child: RegularTextMed("New Applicants", 24.0, THEME_BLACK_BLUE, BALOO)
                             ),
                             SizedBox(width: 10.0,),
-                            RegularTextReg("\( ${applicantList.length} \)", 22.0, BLACK, BALOO),
+                            RegularTextReg("\( ${applicantList.length} \)", 22.0, THEME_BLACK_BLUE, BALOO),
                             Spacer(),
 //                            GestureDetector(
 //                              onTap: (){
@@ -357,7 +357,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                   color: GREEN
                               ),
                             ),
-                            RegularTextMed("    Accepted", 24.0, BLACK, BALOO),
+                            RegularTextMed("    Accepted", 24.0, THEME_BLACK_BLUE, BALOO),
                             Spacer(),
                           ],
                         ) : Container(),
@@ -394,7 +394,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                   color: YELLOW
                               ),
                             ),
-                            RegularTextMed("    In-Review", 24.0, BLACK, BALOO),
+                            RegularTextMed("    In-Review", 24.0, THEME_BLACK_BLUE, BALOO),
                             Spacer(),
                           ],
                         ) : Container(),

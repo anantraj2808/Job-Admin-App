@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
-            backgroundColor: BLACK,
+            backgroundColor: THEME_BLACK_BLUE,
             textColor: WHITE,
             fontSize: 16.0
         );
@@ -100,22 +100,22 @@ class _ProfilePageState extends State<ProfilePage> {
                           return "Enter a valid password";
                         return null;
                       },
-                      style: TextStyle(color: BLACK),
+                      style: TextStyle(color: THEME_BLACK_BLUE),
                       obscureText: isOldPwObscured,
-                      cursorColor: BLACK,
+                      cursorColor: THEME_BLACK_BLUE,
                       cursorHeight: 20.0,
                       autofocus: false,
                       decoration: InputDecoration(
                         labelText: "Old / Temporary Password",
-                        labelStyle: TextStyle(color: BLACK,fontSize: 12.0),
+                        labelStyle: TextStyle(color: THEME_BLACK_BLUE,fontSize: 12.0),
                         prefixIcon: Icon(
                           Icons.lock_outline,
-                          color: BLACK,
+                          color: THEME_BLACK_BLUE,
                         ),
 //                        suffixIcon: IconButton(
 //                          icon: Icon(
 //                            Icons.remove_red_eye,
-//                            color: BLACK,
+//                            color: THEME_BLACK_BLUE,
 //                          ),
 //                          onPressed: () {
 //                            setState(() {
@@ -125,10 +125,10 @@ class _ProfilePageState extends State<ProfilePage> {
 //                          },
 //                        ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BLACK, width: 1.0),
+                          borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BLACK, width: 1.0),
+                          borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                         ),
                       ),
                     )),
@@ -146,22 +146,22 @@ class _ProfilePageState extends State<ProfilePage> {
                           return "Create a stronger password";
                         return null;
                       },
-                      style: TextStyle(color: BLACK),
+                      style: TextStyle(color: THEME_BLACK_BLUE),
                       obscureText: isPwObscured,
-                      cursorColor: BLACK,
+                      cursorColor: THEME_BLACK_BLUE,
                       cursorHeight: 20.0,
                       autofocus: false,
                       decoration: InputDecoration(
                         labelText: "New Password",
-                        labelStyle: TextStyle(color: BLACK,fontSize: 12.0),
+                        labelStyle: TextStyle(color: THEME_BLACK_BLUE,fontSize: 12.0),
                         prefixIcon: Icon(
                           Icons.lock,
-                          color: BLACK,
+                          color: THEME_BLACK_BLUE,
                         ),
 //                        suffixIcon: IconButton(
 //                          icon: Icon(
 //                            Icons.remove_red_eye,
-//                            color: BLACK,
+//                            color: THEME_BLACK_BLUE,
 //                          ),
 //                          onPressed: () {
 //                            setState(() {
@@ -170,10 +170,10 @@ class _ProfilePageState extends State<ProfilePage> {
 //                          },
 //                        ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BLACK, width: 1.0),
+                          borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BLACK, width: 1.0),
+                          borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                         ),
                       ),
                     )),
@@ -189,22 +189,22 @@ class _ProfilePageState extends State<ProfilePage> {
                           return "Confirm your password";
                         return null;
                       },
-                      style: TextStyle(color: BLACK),
+                      style: TextStyle(color: THEME_BLACK_BLUE),
                       obscureText: isConfirmPwObscured,
-                      cursorColor: BLACK,
+                      cursorColor: THEME_BLACK_BLUE,
                       cursorHeight: 20.0,
                       autofocus: false,
                       decoration: InputDecoration(
                         labelText: "Re-enter new Password",
-                        labelStyle: TextStyle(color: BLACK,fontSize: 12.0),
+                        labelStyle: TextStyle(color: THEME_BLACK_BLUE,fontSize: 12.0),
                         prefixIcon: Icon(
                           Icons.lock,
-                          color: BLACK,
+                          color: THEME_BLACK_BLUE,
                         ),
 //                        suffixIcon: IconButton(
 //                          icon: Icon(
 //                            Icons.remove_red_eye,
-//                            color: BLACK,
+//                            color: THEME_BLACK_BLUE,
 //                          ),
 //                          onPressed: () {
 //                            setState(() {
@@ -213,10 +213,10 @@ class _ProfilePageState extends State<ProfilePage> {
 //                          },
 //                        ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BLACK, width: 1.0),
+                          borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: BLACK, width: 1.0),
+                          borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                         ),
                       ),
                     )),
@@ -224,7 +224,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: ht * 0.02,
                 ),
                 FlatButton(
-                  color: BLACK,
+                  color: THEME_BLACK_BLUE,
                   child: RegularTextMed("Confirm", 18.0, WHITE, BALOO),
                   onPressed: (){
                     if (passwordTEC.text == confirmPasswordTEC.text){
@@ -237,7 +237,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
-                          backgroundColor: BLACK,
+                          backgroundColor: THEME_BLACK_BLUE,
                           textColor: WHITE,
                           fontSize: 16.0
                       );
@@ -269,7 +269,7 @@ class _ProfilePageState extends State<ProfilePage> {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
-            backgroundColor: BLACK,
+            backgroundColor: THEME_BLACK_BLUE,
             textColor: WHITE,
             fontSize: 16.0
         );
@@ -323,11 +323,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 100.0,
                           width: 100.0,
                           decoration: BoxDecoration(
-                            color: BLACK_26,
+                            color: THEME_LIGHT_BLUE,
                             shape: BoxShape.circle,
                           ),
                           child: Center(
-                            child: Icon(Icons.perm_identity,color: BLACK,size: 50.0,),
+                            child: Icon(Icons.perm_identity,color: THEME_DARK_BLUE,size: 50.0,),
                           ),
                         ),
                         SizedBox(height: 50.0,),
@@ -338,23 +338,23 @@ class _ProfilePageState extends State<ProfilePage> {
                             if (val.toString().trim().length == 0) return "Enter valid Organisation Name";
                             return null;
                           },
-                          style: TextStyle(color: BLACK),
-                          cursorColor: BLACK,
+                          style: TextStyle(color: THEME_BLACK_BLUE),
+                          cursorColor: THEME_BLACK_BLUE,
                           cursorHeight: 20.0,
                           autofocus: false,
                           decoration: InputDecoration(
                             labelText: "Organisation Name",
-                            labelStyle: TextStyle(color: BLACK),
+                            labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                             prefixIcon: Icon(
                               Icons.people,
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                              BorderSide(color: BLACK, width: 1.0),
+                              BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                              borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                           ),
                         ),
@@ -366,23 +366,23 @@ class _ProfilePageState extends State<ProfilePage> {
                             if (val.toString().trim().length == 0) return "Enter valid Name";
                             return null;
                           },
-                          style: TextStyle(color: BLACK),
-                          cursorColor: BLACK,
+                          style: TextStyle(color: THEME_BLACK_BLUE),
+                          cursorColor: THEME_BLACK_BLUE,
                           cursorHeight: 20.0,
                           autofocus: false,
                           decoration: InputDecoration(
                             labelText: "Name",
-                            labelStyle: TextStyle(color: BLACK),
+                            labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                             prefixIcon: Icon(
                               Icons.person,
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                              BorderSide(color: BLACK, width: 1.0),
+                              BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                              borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                           ),
                         ),
@@ -393,7 +393,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             if (val.toString().trim().length == 0) return "Enter valid email";
                             return null;
                           },
-                          style: TextStyle(color: BLACK),
+                          style: TextStyle(color: THEME_BLACK_BLUE),
                           enabled: false,
                           cursorHeight: 20.0,
                           autofocus: false,
@@ -402,11 +402,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             labelStyle: TextStyle(color: DARK_GREY),
                             prefixIcon: Icon(
                               Icons.email,
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                              BorderSide(color: BLACK, width: 1.0),
+                              BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: DARK_GREY, width: 1.0),
@@ -421,31 +421,31 @@ class _ProfilePageState extends State<ProfilePage> {
                             if (val.toString().trim().length != 0) return "Enter valid Phone Number";
                             return null;
                           },
-                          style: TextStyle(color: BLACK),
-                          cursorColor: BLACK,
+                          style: TextStyle(color: THEME_BLACK_BLUE),
+                          cursorColor: THEME_BLACK_BLUE,
                           cursorHeight: 20.0,
                           autofocus: false,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             labelText: "Phone Number",
-                            labelStyle: TextStyle(color: BLACK),
+                            labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                             prefixIcon: Icon(
                               Icons.phone_android_outlined,
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                              BorderSide(color: BLACK, width: 1.0),
+                              BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                              borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                           ),
                         ),
                         SizedBox(height: 30.0,),
                         FlatButton(
                           onPressed: () => showPasswordChangeDialog(context),
-                          color: BLACK,
+                          color: THEME_BLACK_BLUE,
                           child: RegularTextReg("Change Password", 18.0, WHITE, BALOO),
                         )
                       ],
@@ -466,7 +466,7 @@ class _ProfilePageState extends State<ProfilePage> {
             }
           });
         },
-        backgroundColor: BLACK,
+        backgroundColor: THEME_BLACK_BLUE,
         child: Icon(isEdited ? Icons.check : Icons.edit),
       ),
     );

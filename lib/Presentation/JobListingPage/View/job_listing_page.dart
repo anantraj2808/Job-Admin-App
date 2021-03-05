@@ -34,10 +34,10 @@ class _JobListingPageState extends State<JobListingPage> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: WHITE,
-        title: RegularTextRegCenter("Jobs you\'ve created", 24.0, BLACK, BALOO),
+        title: RegularTextRegCenter("Jobs you\'ve created", 24.0, THEME_DARK_BLUE, BALOO),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.keyboard_arrow_left,color: BLACK,size: 28.0,),
+          icon: Icon(Icons.keyboard_arrow_left,color: THEME_DARK_BLUE,size: 28.0,),
         ),
       ),
       body: SafeArea(

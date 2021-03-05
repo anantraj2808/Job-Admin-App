@@ -8,8 +8,8 @@ import 'package:job_admin_app/models/job.dart';
 Widget jobListingCard(BuildContext context, Job job, int index){
   var ht = MediaQuery.of(context).size.height;
   var wd = MediaQuery.of(context).size.width;
-  Color textColor = index%2 == 0 ? WHITE : BLACK;
-  Color boxColor = index%2 == 0 ? BLACK : WHITE;
+  Color textColor = index%2 == 0 ? WHITE : THEME_DARK_BLUE;
+  Color boxColor = index%2 == 0 ? THEME_DARK_BLUE : THEME_LIGHT_BLUE;
   int professionIndex = PROFESSION_LIST.indexOf(job.profession) - 1;
   bool isJobActive = job.isActive == "true" ? true : false;
   String payBasis = job.payBasis == "Per Day" ? "/day" : "/month";

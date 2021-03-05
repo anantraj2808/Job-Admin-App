@@ -9,8 +9,8 @@ applicantListTile(BuildContext context, int index, Applicant applicant){
   var ht = MediaQuery.of(context).size.height;
   var wd = MediaQuery.of(context).size.width;
   //index = 0;
-  Color textColor = index%2 == 0 ? WHITE : BLACK;
-  Color boxColor = index%2 == 0 ? BLACK : WHITE;
+  Color textColor = index%2 == 0 ? WHITE : THEME_DARK_BLUE;
+  Color boxColor = index%2 == 0 ? THEME_DARK_BLUE : THEME_LIGHT_BLUE;
   return Material(
     color: boxColor,
     elevation: 10.0,

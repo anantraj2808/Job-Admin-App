@@ -88,8 +88,8 @@ class _PostJobFormState extends State<PostJobForm> {
       invalidateCounter = toast("Please select a language",invalidateCounter);
       return false;
     }
-    if (qualificationsTEC.text.trim() == "") qualificationsTEC.text = "No particular qualifications required";
-    if (experienceTEC.text.trim() == "") experienceTEC.text = "No particular experience required";
+    if (qualificationsTEC.text.trim() == "") qualificationsTEC.text = "No particular qualifications requiTHEME_BLACK_BLUE";
+    if (experienceTEC.text.trim() == "") experienceTEC.text = "No particular experience requiTHEME_BLACK_BLUE";
     return true;
   }
 
@@ -99,7 +99,7 @@ class _PostJobFormState extends State<PostJobForm> {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
-        backgroundColor: BLACK,
+        backgroundColor: THEME_BLACK_BLUE,
         textColor: WHITE,
         fontSize: 16.0
     );
@@ -137,7 +137,7 @@ class _PostJobFormState extends State<PostJobForm> {
         ),
                 (route) => false);
       }
-      else toast("Some unknown error occurred", 0);
+      else toast("Some unknown error occurTHEME_BLACK_BLUE", 0);
     });
     setState(() {
       isLoading = false;
@@ -160,10 +160,10 @@ class _PostJobFormState extends State<PostJobForm> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: WHITE,
-        title: RegularTextRegCenter("Post a Job", 24.0, BLACK, BALOO),
+        title: RegularTextRegCenter("Post a Job", 24.0, THEME_BLACK_BLUE, BALOO),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.keyboard_arrow_left,color: BLACK,size: 28.0,),
+          icon: Icon(Icons.keyboard_arrow_left,color: THEME_BLACK_BLUE,size: 28.0,),
         ),
       ),
       body: Builder(
@@ -187,27 +187,27 @@ class _PostJobFormState extends State<PostJobForm> {
                               child: TextFormField(
                                 controller: companyTEC,
                                 enabled: false,
-                                style: TextStyle(color: DARK_GREY),
-                                cursorColor: BLACK,
+                                style: TextStyle(color: THEME_MID_BLUE),
+                                cursorColor: THEME_MID_BLUE,
                                 cursorHeight: 20.0,
                                 autofocus: false,
                                 decoration: InputDecoration(
                                   labelText: "Organisation",
-                                  labelStyle: TextStyle(color: DARK_GREY),
+                                  labelStyle: TextStyle(color: THEME_MID_BLUE),
                                   prefixIcon: Icon(
                                     Icons.people,
-                                    color: GREY,
+                                    color: THEME_MID_BLUE,
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderSide:
-                                    BorderSide(color: GREY, width: 1.0),
+                                    BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
-                                    BorderSide(color: GREY, width: 1.0),
+                                    BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: BLACK, width: 1.0),
+                                    borderSide: BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                 ),
                               ),
@@ -219,27 +219,27 @@ class _PostJobFormState extends State<PostJobForm> {
                               child: TextFormField(
                                 controller: emailTEC,
                                 enabled: false,
-                                style: TextStyle(color: DARK_GREY),
-                                cursorColor: BLACK,
+                                style: TextStyle(color: THEME_MID_BLUE),
+                                cursorColor: THEME_MID_BLUE,
                                 cursorHeight: 20.0,
                                 autofocus: false,
                                 decoration: InputDecoration(
                                   labelText: "Email",
-                                  labelStyle: TextStyle(color: DARK_GREY),
+                                  labelStyle: TextStyle(color: THEME_MID_BLUE),
                                   prefixIcon: Icon(
                                     Icons.email,
-                                    color: GREY,
+                                    color: THEME_MID_BLUE,
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderSide:
-                                    BorderSide(color: GREY, width: 1.0),
+                                    BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
-                                    BorderSide(color: GREY, width: 1.0),
+                                    BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: BLACK, width: 1.0),
+                                    borderSide: BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                 ),
                               ),
@@ -251,27 +251,27 @@ class _PostJobFormState extends State<PostJobForm> {
                               child: TextFormField(
                                 controller: phoneTEC,
                                 enabled: false,
-                                style: TextStyle(color: DARK_GREY),
-                                cursorColor: BLACK,
+                                style: TextStyle(color: THEME_MID_BLUE),
+                                cursorColor: THEME_MID_BLUE,
                                 cursorHeight: 20.0,
                                 autofocus: false,
                                 decoration: InputDecoration(
                                   labelText: "Phone No.",
-                                  labelStyle: TextStyle(color: DARK_GREY),
+                                  labelStyle: TextStyle(color: THEME_MID_BLUE),
                                   prefixIcon: Icon(
                                     Icons.phone_in_talk,
-                                    color: GREY,
+                                    color: THEME_MID_BLUE,
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderSide:
-                                    BorderSide(color: GREY, width: 1.0),
+                                    BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
-                                    BorderSide(color: GREY, width: 1.0),
+                                    BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: BLACK, width: 1.0),
+                                    borderSide: BorderSide(color: THEME_MID_BLUE, width: 1.0),
                                   ),
                                 ),
                               ),
@@ -283,11 +283,11 @@ class _PostJobFormState extends State<PostJobForm> {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
-                                    border: Border.all(color: BLACK)
+                                    border: Border.all(color: THEME_BLACK_BLUE)
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.location_searching,color: BLACK,size: 25.0,),
+                                    Icon(Icons.location_searching,color: THEME_BLACK_BLUE,size: 25.0,),
                                     SizedBox(width: 12.5,),
                                     Expanded(
                                       child: DropdownButton(
@@ -308,7 +308,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                         },
                                         items: statesList.map((location) {
                                           return DropdownMenuItem(
-                                            child: Text(location,style: TextStyle(color: location == "Select a state" ? DARK_GREY : BLACK),),
+                                            child: Text(location,style: TextStyle(color: location == "Select a state" ? THEME_BLACK_BLUE : THEME_BLACK_BLUE),),
                                             value: location,
                                           );
                                         }).toList(),
@@ -324,11 +324,11 @@ class _PostJobFormState extends State<PostJobForm> {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
-                                    border: Border.all(color: BLACK)
+                                    border: Border.all(color: THEME_BLACK_BLUE)
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.location_on_outlined,color: BLACK,size: 25.0,),
+                                    Icon(Icons.location_on_outlined,color: THEME_BLACK_BLUE,size: 25.0,),
                                     SizedBox(width: 12.5,),
                                     Expanded(
                                       child: DropdownButton(
@@ -342,7 +342,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                         },
                                         items: citiesList.map((city) {
                                           return DropdownMenuItem(
-                                            child: new Text(city,style: TextStyle(color: city == "Select a city" ? DARK_GREY : BLACK),),
+                                            child: new Text(city,style: TextStyle(color: city == "Select a city" ? THEME_BLACK_BLUE : THEME_BLACK_BLUE),),
                                             value: city,
                                           );
                                         }).toList(),
@@ -358,11 +358,11 @@ class _PostJobFormState extends State<PostJobForm> {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
-                                    border: Border.all(color: BLACK)
+                                    border: Border.all(color: THEME_BLACK_BLUE)
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.work_outline,color: BLACK,size: 25.0,),
+                                    Icon(Icons.work_outline,color: THEME_BLACK_BLUE,size: 25.0,),
                                     SizedBox(width: 12.5,),
                                     Expanded(
                                       child: DropdownButton(
@@ -376,7 +376,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                         },
                                         items: PROFESSION_LIST.map((profession) {
                                           return DropdownMenuItem(
-                                            child: new Text(profession,style: TextStyle(color: profession == "Select a Pofession" ? DARK_GREY : BLACK),),
+                                            child: new Text(profession,style: TextStyle(color: profession == "Select a Pofession" ? THEME_BLACK_BLUE : THEME_BLACK_BLUE),),
                                             value: profession,
                                           );
                                         }).toList(),
@@ -397,8 +397,8 @@ class _PostJobFormState extends State<PostJobForm> {
                                 return null;
                               },
                               controller: jobDescriptionTEC,
-                              style: TextStyle(color: BLACK),
-                              cursorColor: BLACK,
+                              style: TextStyle(color: THEME_BLACK_BLUE),
+                              cursorColor: THEME_BLACK_BLUE,
                               cursorHeight: 20.0,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -406,14 +406,14 @@ class _PostJobFormState extends State<PostJobForm> {
                                 labelStyle: hintTextStyle(),
                                 prefixIcon: Icon(
                                   Icons.details_outlined,
-                                  color: BLACK,
+                                  color: THEME_BLACK_BLUE,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: BLACK, width: 1.0),
+                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                               ),
                             ),
@@ -424,11 +424,11 @@ class _PostJobFormState extends State<PostJobForm> {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
-                                    border: Border.all(color: BLACK)
+                                    border: Border.all(color: THEME_BLACK_BLUE)
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.payment,color: BLACK,size: 25.0,),
+                                    Icon(Icons.payment,color: THEME_BLACK_BLUE,size: 25.0,),
                                     SizedBox(width: 12.5,),
                                     Expanded(
                                       child: DropdownButton(
@@ -442,7 +442,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                         },
                                         items: PAY_BASIS_LIST.map((payBasis) {
                                           return DropdownMenuItem(
-                                            child: new Text(payBasis,style: TextStyle(color: payBasis == "Choose a pay-basis" ? DARK_GREY : BLACK),),
+                                            child: new Text(payBasis,style: TextStyle(color: payBasis == "Choose a pay-basis" ? THEME_BLACK_BLUE : THEME_BLACK_BLUE),),
                                             value: payBasis,
                                           );
                                         }).toList(),
@@ -461,8 +461,8 @@ class _PostJobFormState extends State<PostJobForm> {
                                 return null;
                               },
                               controller: salaryTEC,
-                              style: TextStyle(color: BLACK),
-                              cursorColor: BLACK,
+                              style: TextStyle(color: THEME_BLACK_BLUE),
+                              cursorColor: THEME_BLACK_BLUE,
                               cursorHeight: 20.0,
                               autofocus: false,
                               keyboardType: TextInputType.number,
@@ -471,14 +471,14 @@ class _PostJobFormState extends State<PostJobForm> {
                                 labelStyle: hintTextStyle(),
                                 prefixIcon: Icon(
                                   Icons.monetization_on_outlined,
-                                  color: BLACK,
+                                  color: THEME_BLACK_BLUE,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: BLACK, width: 1.0),
+                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                               ),
                             ),
@@ -489,11 +489,11 @@ class _PostJobFormState extends State<PostJobForm> {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
-                                    border: Border.all(color: BLACK)
+                                    border: Border.all(color: THEME_BLACK_BLUE)
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.timer,color: BLACK,size: 25.0,),
+                                    Icon(Icons.timer,color: THEME_BLACK_BLUE,size: 25.0,),
                                     SizedBox(width: 12.5,),
                                     Expanded(
                                       child: DropdownButton(
@@ -507,7 +507,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                         },
                                         items: DUTY_TYPE_LIST.map((dutyType) {
                                           return DropdownMenuItem(
-                                            child: new Text(dutyType,style: TextStyle(color: dutyType == "Choose a duty type" ? DARK_GREY : BLACK),),
+                                            child: new Text(dutyType,style: TextStyle(color: dutyType == "Choose a duty type" ? THEME_BLACK_BLUE : THEME_BLACK_BLUE),),
                                             value: dutyType,
                                           );
                                         }).toList(),
@@ -527,7 +527,7 @@ class _PostJobFormState extends State<PostJobForm> {
                               },
                               controller: openingsTEC,
                               style: hintTextStyle(),
-                              cursorColor: BLACK,
+                              cursorColor: THEME_BLACK_BLUE,
                               cursorHeight: 20.0,
                               autofocus: false,
                               keyboardType: TextInputType.number,
@@ -536,14 +536,14 @@ class _PostJobFormState extends State<PostJobForm> {
                                 labelStyle: hintTextStyle(),
                                 prefixIcon: Icon(
                                   Icons.format_list_numbered,
-                                  color: BLACK,
+                                  color: THEME_BLACK_BLUE,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: BLACK, width: 1.0),
+                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                               ),
                             ),
@@ -553,24 +553,24 @@ class _PostJobFormState extends State<PostJobForm> {
                               height: 60.0,
                               child: TextFormField(
                                 controller: qualificationsTEC,
-                                style: TextStyle(color: BLACK),
-                                cursorColor: BLACK,
+                                style: TextStyle(color: THEME_BLACK_BLUE),
+                                cursorColor: THEME_BLACK_BLUE,
                                 cursorHeight: 20.0,
                                 autofocus: false,
                                 textCapitalization: TextCapitalization.sentences,
                                 decoration: InputDecoration(
-                                  labelText: "Min. Qualification required (if any)",
+                                  labelText: "Min. Qualification requiTHEME_BLACK_BLUE (if any)",
                                   labelStyle: hintTextStyle(),
                                   prefixIcon: Icon(
                                     Icons.book_online_outlined,
-                                    color: BLACK,
+                                    color: THEME_BLACK_BLUE,
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide:
-                                    BorderSide(color: BLACK, width: 1.0),
+                                    BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: BLACK, width: 1.0),
+                                    borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                   ),
                                 ),
                               ),
@@ -582,11 +582,11 @@ class _PostJobFormState extends State<PostJobForm> {
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
-                                    border: Border.all(color: BLACK)
+                                    border: Border.all(color: THEME_BLACK_BLUE)
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.language_outlined,color: BLACK,size: 25.0,),
+                                    Icon(Icons.language_outlined,color: THEME_BLACK_BLUE,size: 25.0,),
                                     SizedBox(width: 12.5,),
                                     Expanded(
                                       child: DropdownButton(
@@ -613,24 +613,24 @@ class _PostJobFormState extends State<PostJobForm> {
                             //minimum experience
                             TextFormField(
                               controller: experienceTEC,
-                              style: TextStyle(color: BLACK),
-                              cursorColor: BLACK,
+                              style: TextStyle(color: THEME_BLACK_BLUE),
+                              cursorColor: THEME_BLACK_BLUE,
                               cursorHeight: 20.0,
                               autofocus: false,
                               textCapitalization: TextCapitalization.sentences,
                               decoration: InputDecoration(
-                                labelText: "Min. experience required (if any)",
+                                labelText: "Min. experience requiTHEME_BLACK_BLUE (if any)",
                                 labelStyle: hintTextStyle(),
                                 prefixIcon: Icon(
                                   Icons.network_check_outlined,
-                                  color: BLACK,
+                                  color: THEME_BLACK_BLUE,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: BLACK, width: 1.0),
+                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                               ),
                             ),
@@ -640,12 +640,12 @@ class _PostJobFormState extends State<PostJobForm> {
                               height: 60.0,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5.0),
-                                  border: Border.all(color: BLACK)
+                                  border: Border.all(color: THEME_BLACK_BLUE)
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  RegularTextReg("Timings: ", 18.0, BLACK, BALOO),
+                                  RegularTextReg("Timings: ", 18.0, THEME_BLACK_BLUE, BALOO),
                                   IconButton(
                                     icon: Icon(Icons.timer),
                                     onPressed: () async {
@@ -661,8 +661,8 @@ class _PostJobFormState extends State<PostJobForm> {
                                   ),
                                   Container(
                                       transform: Matrix4.translationValues(-10, 0, 0),
-                                      child: RegularTextReg(getTime(startPicked), 18.0, BLACK, BALOO)),
-                                  RegularTextReg("-", 18.0, BLACK, BALOO),
+                                      child: RegularTextReg(getTime(startPicked), 18.0, THEME_BLACK_BLUE, BALOO)),
+                                  RegularTextReg("-", 18.0, THEME_BLACK_BLUE, BALOO),
                                   Container(
                                     transform: Matrix4.translationValues(-2, 0, 0),
                                     child: IconButton(
@@ -681,7 +681,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                   ),
                                   Container(
                                       transform: Matrix4.translationValues(-10, 0, 0),
-                                    child: RegularTextReg(getTime(endPicked), 18.0, BLACK, BALOO)),
+                                    child: RegularTextReg(getTime(endPicked), 18.0, THEME_BLACK_BLUE, BALOO)),
                                 ],
                               ),
                             ),
@@ -694,8 +694,8 @@ class _PostJobFormState extends State<PostJobForm> {
 //                                return null;
 //                              },
 //                              controller: timingTEC,
-//                              style: TextStyle(color: BLACK),
-//                              cursorColor: BLACK,
+//                              style: TextStyle(color: THEME_BLACK_BLUE),
+//                              cursorColor: THEME_BLACK_BLUE,
 //                              cursorHeight: 20.0,
 //                              autofocus: false,
 //                              decoration: InputDecoration(
@@ -703,14 +703,14 @@ class _PostJobFormState extends State<PostJobForm> {
 //                                labelStyle: hintTextStyle(),
 //                                prefixIcon: Icon(
 //                                  Icons.access_time_outlined,
-//                                  color: BLACK,
+//                                  color: THEME_BLACK_BLUE,
 //                                ),
 //                                focusedBorder: OutlineInputBorder(
 //                                  borderSide:
-//                                  BorderSide(color: BLACK, width: 1.0),
+//                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
 //                                ),
 //                                enabledBorder: OutlineInputBorder(
-//                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+//                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
 //                                ),
 //                              ),
 //                            ),
@@ -724,8 +724,8 @@ class _PostJobFormState extends State<PostJobForm> {
                                 return null;
                               },
                               controller: addressTEC,
-                              style: TextStyle(color: BLACK),
-                              cursorColor: BLACK,
+                              style: TextStyle(color: THEME_BLACK_BLUE),
+                              cursorColor: THEME_BLACK_BLUE,
                               cursorHeight: 20.0,
                               autofocus: false,
                               decoration: InputDecoration(
@@ -733,14 +733,14 @@ class _PostJobFormState extends State<PostJobForm> {
                                 labelStyle: hintTextStyle(),
                                 prefixIcon: Icon(
                                   Icons.my_location_outlined,
-                                  color: BLACK,
+                                  color: THEME_BLACK_BLUE,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: BLACK, width: 1.0),
+                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                               ),
                             ),
@@ -760,7 +760,7 @@ class _PostJobFormState extends State<PostJobForm> {
                                 width: ht*0.2,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    color: BLACK
+                                    color: THEME_BLACK_BLUE
                                 ),
                                 child: Center(child: RegularTextMedCenter("Confirm", 22.0, WHITE, BALOO)),
                               ),
@@ -780,6 +780,6 @@ class _PostJobFormState extends State<PostJobForm> {
   }
 
   TextStyle hintTextStyle(){
-    return TextStyle(color: DARK_GREY);
+    return TextStyle(color: THEME_BLACK_BLUE);
   }
 }
