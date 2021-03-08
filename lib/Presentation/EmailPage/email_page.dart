@@ -71,7 +71,7 @@ class _EmailPageState extends State<EmailPage> {
                               fontFamily: 'yanone',
                               height: 1.0,
                               letterSpacing: 2.0,
-                              color: BLACK
+                              color: THEME_BLACK_BLUE
                           ),
                           textAlign: TextAlign.start,
                         ),
@@ -90,23 +90,23 @@ class _EmailPageState extends State<EmailPage> {
                                     ? null
                                     : "Please enter valid Email ID";
                               },
-                              style: TextStyle(color: BLACK),
-                              cursorColor: BLACK,
+                              style: TextStyle(color: THEME_BLACK_BLUE),
+                              cursorColor: THEME_BLACK_BLUE,
                               cursorHeight: 20.0,
                               autofocus: false,
                               decoration: InputDecoration(
                                 labelText: "Email",
-                                labelStyle: TextStyle(color: BLACK),
+                                labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                                 prefixIcon: Icon(
                                   Icons.email,
-                                  color: BLACK,
+                                  color: THEME_BLACK_BLUE,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: BLACK, width: 1.0),
+                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                               ),
                             ),
@@ -123,7 +123,7 @@ class _EmailPageState extends State<EmailPage> {
                           width: ht * 0.35,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            color: BLACK,
+                            color: THEME_BLACK_BLUE,
                           ),
                           child: Container(
                             alignment: Alignment.center,

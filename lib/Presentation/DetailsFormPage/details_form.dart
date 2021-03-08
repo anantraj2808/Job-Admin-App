@@ -66,9 +66,9 @@ class _DetailsFormState extends State<DetailsForm> {
               height: 300.0,
               child: Column(
                 children: [
-                  RegularTextReg(ALERT_TEXT_1 + userProvider.email + ALERT_TEXT_2, 16.0, BLACK, BALOO),
+                  RegularTextReg(ALERT_TEXT_1 + userProvider.email + ALERT_TEXT_2, 16.0, THEME_BLACK_BLUE, BALOO),
                   FlatButton(
-                    color: BLACK,
+                    color: THEME_BLACK_BLUE,
                     child: RegularTextMed("Okay", 18.0, WHITE, BALOO),
                     onPressed: (){
                       Navigator.pop(context);
@@ -116,7 +116,7 @@ class _DetailsFormState extends State<DetailsForm> {
                                     fontFamily: 'yanone',
                                     height: 1.0,
                                     letterSpacing: 2.0,
-                                    color: BLACK
+                                    color: THEME_BLACK_BLUE
                                 ),),
                                 TypewriterAnimatedTextKit(
                                   isRepeatingAnimation: true,
@@ -139,7 +139,7 @@ class _DetailsFormState extends State<DetailsForm> {
                                       fontFamily: 'yanone',
                                       height: 1.0,
                                       letterSpacing: 2.0,
-                                      color: BLACK
+                                      color: THEME_BLACK_BLUE
                                   ),
                                   textAlign: TextAlign.start,
                                 ),
@@ -148,7 +148,7 @@ class _DetailsFormState extends State<DetailsForm> {
                                     fontFamily: 'yanone',
                                     height: 1.0,
                                     letterSpacing: 2.0,
-                                    color: BLACK
+                                    color: THEME_BLACK_BLUE
                                 ),),
                               ],
                             )
@@ -161,7 +161,7 @@ class _DetailsFormState extends State<DetailsForm> {
                               fontFamily: 'yanone',
                               height: 1.0,
                               //letterSpacing: 2.0,
-                              color: BLACK
+                              color: THEME_BLACK_BLUE
                           ),),
                         ),
                         SizedBox(height: ht * 0.04,),
@@ -171,23 +171,23 @@ class _DetailsFormState extends State<DetailsForm> {
                             if (val.toString().trim().length == 0) return "Enter valid Organisation Name";
                             return null;
                           },
-                          style: TextStyle(color: BLACK),
-                          cursorColor: BLACK,
+                          style: TextStyle(color: THEME_BLACK_BLUE),
+                          cursorColor: THEME_BLACK_BLUE,
                           cursorHeight: 20.0,
                           autofocus: false,
                           decoration: InputDecoration(
                             labelText: "Organisation Name",
-                            labelStyle: TextStyle(color: BLACK),
+                            labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                             prefixIcon: Icon(
                               Icons.people,
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                              BorderSide(color: BLACK, width: 1.0),
+                              BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                              borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                           ),
                         ),
@@ -198,23 +198,23 @@ class _DetailsFormState extends State<DetailsForm> {
                             if (val.toString().trim().length == 0) return "Enter valid Name";
                             return null;
                           },
-                          style: TextStyle(color: BLACK),
-                          cursorColor: BLACK,
+                          style: TextStyle(color: THEME_BLACK_BLUE),
+                          cursorColor: THEME_BLACK_BLUE,
                           cursorHeight: 20.0,
                           autofocus: false,
                           decoration: InputDecoration(
                             labelText: "Your Name",
-                            labelStyle: TextStyle(color: BLACK),
+                            labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                             prefixIcon: Icon(
                               Icons.person,
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                              BorderSide(color: BLACK, width: 1.0),
+                              BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                              borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                           ),
                         ),
@@ -225,24 +225,24 @@ class _DetailsFormState extends State<DetailsForm> {
                             if (val.toString().trim().length != 10) return "Enter valid Phone Number";
                             return null;
                           },
-                          style: TextStyle(color: BLACK),
-                          cursorColor: BLACK,
+                          style: TextStyle(color: THEME_BLACK_BLUE),
+                          cursorColor: THEME_BLACK_BLUE,
                           cursorHeight: 20.0,
                           autofocus: false,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             labelText: "Phone Number",
-                            labelStyle: TextStyle(color: BLACK),
+                            labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                             prefixIcon: Icon(
                               Icons.phone_in_talk,
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide:
-                              BorderSide(color: BLACK, width: 1.0),
+                              BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: BLACK, width: 1.0),
+                              borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                             ),
                           ),
                         ),
@@ -256,20 +256,20 @@ class _DetailsFormState extends State<DetailsForm> {
 //                                if (val.toString().trim().length <= 5) return "Create a stronger password";
 //                                return null;
 //                              },
-//                              style: TextStyle(color: BLACK),
+//                              style: TextStyle(color: THEME_BLACK_BLUE),
 //                              obscureText: isPwObscured,
-//                              cursorColor: BLACK,
+//                              cursorColor: THEME_BLACK_BLUE,
 //                              cursorHeight: 20.0,
 //                              autofocus: false,
 //                              decoration: InputDecoration(
 //                                labelText: "Password",
-//                                labelStyle: TextStyle(color: BLACK),
+//                                labelStyle: TextStyle(color: THEME_BLACK_BLUE),
 //                                prefixIcon: Icon(
 //                                  Icons.lock,
-//                                  color: BLACK,
+//                                  color: THEME_BLACK_BLUE,
 //                                ),
 //                                suffixIcon: IconButton(
-//                                  icon: Icon(Icons.remove_red_eye,color: BLACK,),
+//                                  icon: Icon(Icons.remove_red_eye,color: THEME_BLACK_BLUE,),
 //                                  onPressed: (){
 //                                    setState(() {
 //                                      isPwObscured = !isPwObscured;
@@ -278,10 +278,10 @@ class _DetailsFormState extends State<DetailsForm> {
 //                                ),
 //                                focusedBorder: OutlineInputBorder(
 //                                  borderSide:
-//                                  BorderSide(color: BLACK, width: 1.0),
+//                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
 //                                ),
 //                                enabledBorder: OutlineInputBorder(
-//                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+//                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
 //                                ),
 //                              ),
 //                            )),
@@ -294,20 +294,20 @@ class _DetailsFormState extends State<DetailsForm> {
 //                                if (val.toString().trim().length == 0) return "Confirm your password";
 //                                return null;
 //                              },
-//                              style: TextStyle(color: BLACK),
+//                              style: TextStyle(color: THEME_BLACK_BLUE),
 //                              obscureText: isConfirmPwObscured,
-//                              cursorColor: BLACK,
+//                              cursorColor: THEME_BLACK_BLUE,
 //                              cursorHeight: 20.0,
 //                              autofocus: false,
 //                              decoration: InputDecoration(
 //                                labelText: "Confirm Password",
-//                                labelStyle: TextStyle(color: BLACK),
+//                                labelStyle: TextStyle(color: THEME_BLACK_BLUE),
 //                                prefixIcon: Icon(
 //                                  Icons.lock_outline,
-//                                  color: BLACK,
+//                                  color: THEME_BLACK_BLUE,
 //                                ),
 //                                suffixIcon: IconButton(
-//                                  icon: Icon(Icons.remove_red_eye,color: BLACK,),
+//                                  icon: Icon(Icons.remove_red_eye,color: THEME_BLACK_BLUE,),
 //                                  onPressed: (){
 //                                    setState(() {
 //                                      isConfirmPwObscured = !isConfirmPwObscured;
@@ -316,10 +316,10 @@ class _DetailsFormState extends State<DetailsForm> {
 //                                ),
 //                                focusedBorder: OutlineInputBorder(
 //                                  borderSide:
-//                                  BorderSide(color: BLACK, width: 1.0),
+//                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
 //                                ),
 //                                enabledBorder: OutlineInputBorder(
-//                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+//                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
 //                                ),
 //                              ),
 //                            )),
@@ -333,7 +333,7 @@ class _DetailsFormState extends State<DetailsForm> {
 //                                  gravity: ToastGravity.BOTTOM,
 //                                  timeInSecForIosWeb: 1,
 //                                  backgroundColor: WHITE,
-//                                  textColor: BLACK,
+//                                  textColor: THEME_BLACK_BLUE,
 //                                  fontSize: 16.0
 //                              );
 //                            }
@@ -351,7 +351,7 @@ class _DetailsFormState extends State<DetailsForm> {
                             width: ht * 0.35,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
-                              color: BLACK,
+                              color: THEME_BLACK_BLUE,
                             ),
                             child: Container(
                               alignment: Alignment.center,

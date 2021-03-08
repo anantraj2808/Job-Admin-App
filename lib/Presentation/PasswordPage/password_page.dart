@@ -79,7 +79,7 @@ class _PasswordPageState extends State<PasswordPage> {
                                     fontFamily: 'yanone',
                                     height: 1.0,
                                     letterSpacing: 2.0,
-                                    color: BLACK
+                                    color: THEME_BLACK_BLUE
                                 ),
                                 textAlign: TextAlign.start,
                               ),
@@ -92,7 +92,7 @@ class _PasswordPageState extends State<PasswordPage> {
                           fontFamily: 'yanone',
                           height: 1.0,
                           //letterSpacing: 2.0,
-                          color: BLACK
+                          color: THEME_BLACK_BLUE
                       ),),
                       SizedBox(height: ht * 0.05,),
                       Form(
@@ -101,9 +101,9 @@ class _PasswordPageState extends State<PasswordPage> {
                             padding: EdgeInsets.symmetric(horizontal: ht * 0.016),
                             child: TextFormField(
                               controller: passwordTEC,
-                              style: TextStyle(color: BLACK),
+                              style: TextStyle(color: THEME_BLACK_BLUE),
                               obscureText: isObscured,
-                              cursorColor: BLACK,
+                              cursorColor: THEME_BLACK_BLUE,
                               cursorHeight: 20.0,
                               autofocus: false,
 //                              validator: (String val){
@@ -112,13 +112,13 @@ class _PasswordPageState extends State<PasswordPage> {
 //                              },
                               decoration: InputDecoration(
                                 labelText: "Password",
-                                labelStyle: TextStyle(color: BLACK),
+                                labelStyle: TextStyle(color: THEME_BLACK_BLUE),
                                 prefixIcon: Icon(
                                   Icons.lock,
-                                  color: BLACK,
+                                  color: THEME_BLACK_BLUE,
                                 ),
                                 suffixIcon: IconButton(
-                                  icon: Icon(Icons.remove_red_eye,color: BLACK,),
+                                  icon: Icon(Icons.remove_red_eye,color: THEME_BLACK_BLUE,),
                                   onPressed: (){
                                     setState(() {
                                       isObscured = !isObscured;
@@ -127,10 +127,10 @@ class _PasswordPageState extends State<PasswordPage> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: BLACK, width: 1.0),
+                                  BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: BLACK, width: 1.0),
+                                  borderSide: BorderSide(color: THEME_BLACK_BLUE, width: 1.0),
                                 ),
                               ),
                             )),
@@ -147,7 +147,7 @@ class _PasswordPageState extends State<PasswordPage> {
                           width: ht * 0.35,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            color: BLACK,
+                            color: THEME_BLACK_BLUE,
                           ),
                           child: Container(
                             alignment: Alignment.center,
